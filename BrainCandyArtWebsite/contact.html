@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Brain Candy Art</title>
+
+<style>
+
+/* --- VARIABLES & GLOBAL RESET --- */
+:root {
+    --color-peach: #ffb399; /* Light Peach Accent */
+    --color-text: #222;
+    --color-bg-light: #fcf8f3; /* CREAM BACKGROUND */
+    --font-serif: "Times New Roman", serif;
+    --color-hover-bg: #e69980; /* A slightly darker peach for hover */
+}
+
+/* GLOBAL */
+body {
+    margin: 0;
+    font-family: var(--font-serif);
+    /* BACKGROUND: Cream color with paper fibers texture */
+    background: var(--color-bg-light) url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    background-size: 500px;
+    color: var(--color-text);
+}
+
+/* Removed colored radial gradient for consistency with inventory page */
+body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-color: var(--color-bg-light); 
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* NAV - (Original User Code) */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    padding: 18px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+nav a {
+    margin: 0 25px;
+    text-decoration: none;
+    color: #222;
+    transition: 0.3s;
+    font-size: 20px;
+}
+nav a:hover { 
+    color: var(--color-peach); 
+}
+
+/* CONTACT FORM */
+.container {
+    width: 85%;
+    max-width: 800px;
+    margin: 80px auto;
+    /* Keep content box white for contrast */
+    background: white; 
+    padding: 40px;
+    border: 1px solid #ddd; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 0;
+}
+
+h1 {
+    font-size: 52px;
+    border-bottom: 2px solid var(--color-peach); 
+    padding-bottom: 8px;
+    margin-bottom: 40px;
+    display: inline-block;
+}
+
+label {
+    display: block;
+    font-size: 18px;
+    margin: 20px 0 8px;
+    font-weight: bold;
+    color: var(--color-text); 
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #222; 
+    background: transparent;
+    font-size: 18px;
+    font-family: inherit;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+textarea { height: 160px; }
+
+
+/* ---------------------------------
+   --- IMPROVED BUTTON STYLING ---
+   --------------------------------- */
+button {
+    margin-top: 30px;
+    padding: 14px 40px;
+    border: 2px solid var(--color-peach); 
+    background: var(--color-peach); 
+    color: white;
+    letter-spacing: 1px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 0;
+    transition: 0.3s;
+    font-weight: bold;
+    /* Reset default appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+button:hover {
+    /* Changed to a darker peach for a better hover effect */
+    background: var(--color-hover-bg); 
+    color: white; /* Text stays white */
+    border-color: var(--color-hover-bg);
+}
+
+/* KEY: Prevents the purple/blue focus ring and active color on click */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 179, 153, 0.5); /* Custom peach glow for accessibility */
+}
+
+button:active {
+    /* Stays the same color as hover/normal state or slightly darker */
+    background: var(--color-hover-bg); 
+    transform: translateY(1px); /* Slight press effect */
+}
+
+/* MOBILE ADJUSTMENT */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        margin: 50px auto;
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+    <h1>Contact Brain Candy Art</h1>
+
+    <p>For inquiries regarding purchases, commissions, or exhibitions, please use the form below.</p>
+
+    <form action="https://formsubmit.co/tehemistehe@gmail.com" method="POST"> 
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+</div>
+
+</body>
+</html>
