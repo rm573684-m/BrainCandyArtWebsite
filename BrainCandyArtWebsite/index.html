@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — Brain Candy Art</title>
+
+<style>
+
+/* --- VARIABLES & GLOBAL RESET --- */
+:root {
+    --color-peach: #ffb399; /* Light Peach Accent */
+    --color-text: #222;
+    --color-bg-light: #f7ede4; /* CREAM BACKGROUND */
+    --font-serif: "Times New Roman", serif;
+    --transition-speed: 0.3s;
+}
+
+/* GLOBAL */
+body {
+    margin: 0;
+    font-family: var(--font-serif);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* BACKGROUND: Cream color with diagonal stripes texture */
+    background: var(--color-bg-light) url('https://www.transparenttextures.com/patterns/diagonal-stripes.png');
+    background-size: 500px;
+}
+
+/* SOFT COLOR OVERLAY (REMOVED - Sticking strictly to cream texture for consistency) */
+body::before {
+    content: "";
+    position: fixed; inset: 0;
+    /* REPLACED with solid cream background to ensure texture is clear */
+    background-color: var(--color-bg-light); 
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ---------------------------------
+    ---------- NAV (ORIGINAL USER CODE) ----------
+    --------------------------------- */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    /* NAV background is white for contrast against cream body */
+    background: rgba(255,255,255,0.85); 
+    backdrop-filter: blur(10px);
+    padding: 15px; 
+    text-align: center; 
+    border-bottom: 1px solid #e5e5e5; 
+}
+nav a {
+    margin: 0 22px; 
+    text-decoration: none;
+    color: #333;
+    font-size: 19px; 
+    transition: var(--transition-speed);
+}
+nav a:hover {
+    color: var(--color-peach); 
+}
+
+/* --- MAIN LAYOUT --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+/* HERO SECTION */
+.hero-section {
+    display: flex;
+    flex-direction: row; 
+    gap: 50px;
+    padding: 80px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 60px;
+}
+
+.hero-image-large {
+    flex: 1;
+    min-width: 40%;
+}
+
+.hero-image-large img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+}
+
+.hero-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text h1 {
+    font-size: 50px;
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    color: var(--color-text); 
+}
+
+.hero-text .subtitle {
+    font-size: 1.1em;
+    color: var(--color-peach); 
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* GALLERY GRID */
+.section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--color-peach); 
+    padding-bottom: 10px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.gallery-item {
+    text-align: left;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #eee; 
+}
+
+.gallery-item-title {
+    font-size: 1.4em;
+    font-weight: normal;
+    margin: 5px 0 0;
+}
+.gallery-item-artist {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* ---------------------------------
+    ---------- IMPROVED AUXILIARY / FIND US SECTION ----------
+    --------------------------------- */
+.auxiliary-section {
+    padding-top: 40px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: center; /* Center the whole section */
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.atelier-block {
+    flex: 0 1 450px; /* Constrain width for better centering */
+    text-align: center;
+}
+
+.atelier-block h2 {
+    font-size: 30px;
+    color: var(--color-text);
+    /* NEW: Centered, clean title */
+    border-bottom: 2px solid var(--color-peach); 
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+.atelier-block a {
+    color: var(--color-peach); 
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+.atelier-block a:hover {
+    color: var(--color-text); 
+}
+
+.event-links {
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    align-items: center; /* Center links */
+    gap: 15px; /* Space between links */
+    font-size: 1.2em;
+    width: 100%;
+}
+
+.event-links a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: bold;
+    /* NEW: Clean, subtle hover effect */
+    border-bottom: 1px dashed transparent;
+    transition: border-bottom var(--transition-speed);
+}
+.event-links a:hover {
+    color: var(--color-peach); 
+    border-bottom: 1px dashed var(--color-peach);
+}
+.event-links a:nth-child(2) {
+    font-weight: normal; /* Make the address less bold than the location name */
+    font-size: 0.9em;
+    color: #777;
+    border-bottom: none;
+}
+.event-links a:nth-child(2):hover {
+    color: #777;
+    border-bottom: none;
+}
+
+
+/* ---------------------------------
+    ---------- FOOTER MATCHING INVENTORY PAGE ----------
+    --------------------------------- */
+footer { 
+    text-align: center; 
+    padding: 60px; 
+    color: #666; 
+    margin-top: 50px; 
+}
+
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding-bottom: 40px;
+    }
+    .hero-section {
+        flex-direction: column; 
+        padding: 40px 0;
+        gap: 20px;
+        text-align: center;
+    }
+    .hero-image-large {
+        min-width: 100%;
+    }
+    .hero-text h1 {
+        font-size: 8vw;
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr; 
+        gap: 20px;
+    }
+    .auxiliary-section {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    .atelier-block {
+        flex: 1 1 100%;
+    }
+    .event-links {
+        /* Keep links stacked and centered for mobile */
+        align-items: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+    <div class="hero-section">
+        <div class="hero-image-large">
+            <img src="https://via.placeholder.com/400x550/ffb399/222222?text=Featured+Art" alt="Detailed art featuring lips">
+        </div>
+        <div class="hero-text">
+            <p class="subtitle">Brain Candy Art LLC</p>
+            <h1>Surreal Collage & Vibrant Expression</h1>
+            <p>Each piece is a journey into the unexpected, combining classic imagery with modern, visceral energy. We create art that explores emotional storytelling and dream logic through layered textures.</p>
+            <p>Discover **Kerplewy**, our current featured piece, and explore the full collection.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">Recent Pieces</div>
+    
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x500/215792/FFFFFF?text=Ce+Père+idéal" alt="Ce Père idéal">
+            <p class="gallery-item-title">Another Brother</p>
+            <p class="gallery-item-artist">Original Collage - 2025</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x500/4B258D/FFFFFF?text=La+dernière" alt="La dernière de ne sais">
+            <p class="gallery-item-title">Tempo</p>
+            <p class="gallery-item-artist">Original Collage - 2025</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x500/C83C25/FFFFFF?text=Louisa" alt="Louisa">
+            <p class="gallery-item-title">Riverdale</p>
+            <p class="gallery-item-artist">Original Collage - 2025</p>
+        </div>
+    </div>
+
+    <div class="auxiliary-section">
+        <div class="atelier-block">
+            <h2>Find us @</h2>
+            <div class="event-links">
+                <a href="#">Gallery West</a>
+                <a href="#">447 3rd St, Macon, GA 31201</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>© 2025 Brain Candy Art LLC</footer>
+
+</body>
+</html>
