@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Brain Candy Art</title>
+
+<style>
+
+/* --- VARIABLES & GLOBAL RESET --- */
+:root {
+    --color-peach: #ffb399; /* Light Peach Accent */
+    --color-text: #222;
+    --color-bg-light: #fcf8f3; /* CREAM BACKGROUND */
+    --font-serif: "Times New Roman", serif;
+}
+
+/* GLOBAL */
+body {
+    margin: 0;
+    font-family: var(--font-serif);
+    /* BACKGROUND: Cream color with paper fibers texture */
+    background: var(--color-bg-light) url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    background-size: 500px;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at top right,
+        rgba(255,179,153,0.15), 
+        rgba(158,212,209,0.12),
+        rgba(150,185,232,0.12),
+        rgba(201,167,255,0.12));
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* NAV - (Original User Code) */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    padding: 18px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+nav a {
+    margin: 0 25px;
+    text-decoration: none;
+    color: #222;
+    font-size: 20px;
+    transition: 0.3s;
+}
+nav a:hover {
+    color: var(--color-peach); 
+}
+
+/* CONTENT */
+.main-container {
+    width: 85%;
+    max-width: 1000px;
+    margin: 70px auto;
+}
+
+h1 {
+    font-size: 52px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--color-peach); 
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.text-column {
+    flex: 2; 
+    min-width: 300px;
+}
+
+.artist-image-container {
+    flex: 1; 
+    max-width: 350px;
+    align-self: flex-start; 
+}
+
+.artist-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    border: 1px solid #ddd; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+h2 {
+    color: var(--color-text); 
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+p {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+/* MOBILE ADJUSTMENT */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .artist-image-container {
+        max-width: 100%;
+        order: -1; 
+        margin-bottom: 10px;
+    }
+    .text-column {
+        min-width: unset;
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="main-container">
+    <h1>About Brain Candy Art</h1>
+    
+    <div class="about-content">
+        <div class="text-column">
+            
+            <h2>The Project</h2>
+            <p>
+                Brain Candy Art is a surreal collage project blending layered textures,
+                emotional storytelling, and bold yet human color. Each piece reflects an
+                energy shift — from joy and chaos to memory, dream logic, and absurdity.
+            </p>
+
+            <h2>The Process</h2>
+            <p>
+                The work draws inspiration from vintage print media, everyday objects,
+                and spontaneous fragments of imagery, all assembled to form new, often unexpected,
+                **narratives**. Our process is iterative and focused on capturing a singular, strong feeling.
+            </p>
+            
+            <h2>The Artist</h2>
+            <p>
+                [Insert a brief bio here about the artist's background and philosophy.] The artist's focus is on utilizing discarded materials to give them a second, unexpected life.
+            </p>
+        </div>
+
+        <div class="artist-image-container">
+            <img src="https://via.placeholder.com/400x550/96B9E8/FFFFFF?text=Artist+Photo" alt="Photo of the Artist">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
