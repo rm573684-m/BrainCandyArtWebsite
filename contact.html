@@ -6,99 +6,156 @@
 <title>Contact — Brain Candy Art</title>
 
 <style>
-/* --- NEW NAVIGATION CSS FOR MOBILE --- */
+/* ---------- VARIABLES ---------- */
+:root {
+    --color-text: #222;
+    --color-bg-light: #f7ede4;
+}
 
-/* Base Styles */
+/* ---------- GLOBAL ---------- */
+body {
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    color: var(--color-text);
+    background: var(--color-bg-light);
+    line-height: 1.6;
+}
+
+/* ---------------------------------
+   HEADER & NAVIGATION
+--------------------------------- */
 header {
-    /* Make the header fixed at the top for a smooth mobile experience */
     position: sticky;
     top: 0;
-    z-index: 100; /* Ensure it stays on top */
-    background: rgba(255, 255, 255, 0.95);
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Space icon and potential logo */
     align-items: center;
 }
 
-/* Menu Toggle (Hamburger Icon) */
+/* Hamburger */
 .menu-toggle {
-    display: block; /* Always visible on mobile */
     font-size: 30px;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-text);
     padding: 5px 10px;
-    z-index: 101; /* Above the nav links */
 }
 
-/* Navigation Links Container (Hidden Off-Canvas) */
+/* Navigation */
 .main-nav {
-    position: fixed; /* Fixed position relative to the viewport */
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 250px; /* Width of the revealed menu */
-    background: white; /* Solid background for the menu */
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%); /* Hides the menu completely off-screen */
-    transition: transform 0.4s ease-in-out;
     display: flex;
-    flex-direction: column;
-    padding-top: 60px; /* Space for the header */
+    justify-content: center;
+    margin: 0 auto;
 }
 
-/* Class to make the menu visible */
-.main-nav.open {
-    transform: translateX(0); /* Slides the menu into view */
-}
-
-/* Individual Links */
 .main-nav a {
-    padding: 15px 20px;
+    margin: 0 22px;
     text-decoration: none;
     color: var(--color-text);
-    font-size: 18px;
-    border-bottom: 1px solid #eee;
+    font-size: 19px;
 }
 
-.main-nav a:hover {
-    background: var(--color-bg-light); 
-}
+/* ---------- MOBILE NAV ---------- */
+@media (max-width: 768px) {
 
-/* --- DESKTOP VIEW (Min-width 768px) --- */
-@media (min-width: 768px) {
-    /* Hide the Hamburger Icon */
     .menu-toggle {
-        display: none; 
+        display: block;
     }
 
-    /* Make the Nav Bar look like the original design */
-    header {
-        justify-content: center;
-        padding: 18px 0; /* Restore original vertical padding */
-    }
-
-    /* Reset Nav from fixed/hidden state to inline state */
     .main-nav {
-        position: static; /* No longer fixed */
-        height: auto;
-        width: auto;
-        box-shadow: none;
-        transform: translateX(0); /* Always visible */
-        flex-direction: row; /* Links go side-by-side */
-        padding-top: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 250px;
+        background: #fff;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        flex-direction: column;
+        padding-top: 60px;
     }
 
-    /* Restore Original Desktop Link Styles */
+    .main-nav.open {
+        transform: translateX(0);
+    }
+
     .main-nav a {
-        padding: 0;
-        margin: 0 25px; /* Restore original spacing */
-        border-bottom: none;
-        font-size: 20px;
+        margin: 0;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+    }
+}
+
+/* ---------- DESKTOP ---------- */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+/* ---------------------------------
+   CONTACT PAGE CONTENT
+--------------------------------- */
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.container h1 {
+    margin-bottom: 15px;
+}
+
+.container p {
+    margin-bottom: 40px;
+}
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+label {
+    font-size: 0.95em;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+button {
+    align-self: center;
+    padding: 10px 30px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 1px solid #222;
+    background: transparent;
+}
+
+/* ---------- MOBILE FORM ---------- */
+@media (max-width: 480px) {
+    .container {
+        padding: 40px 0;
     }
 }
 </style>
@@ -107,9 +164,14 @@ header {
 <body>
 
 <header>
-    <button class="menu-toggle" aria-label="Open Menu">
-        &#9776; </button>
-    
+    <button
+        type="button"
+        class="menu-toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false">
+        &#9776;
+    </button>
+
     <nav class="main-nav" id="main-nav">
         <a href="index.html">Home</a>
         <a href="inventory.html">Inventory</a>
@@ -118,42 +180,53 @@ header {
     </nav>
 </header>
 
-<div class="container">
+<main class="container">
 
     <h1>Contact Brain Candy Art</h1>
 
-    <p>For inquiries regarding purchases, commissions, or exhibitions, please use the form below.</p>
+    <p>
+        For inquiries regarding purchases, commissions, or exhibitions,
+        please use the form below.
+    </p>
 
-    <form name="contact" method="POST" data-netlify="true"> 
+    <!-- Netlify Form -->
+    <form
+        name="contact"
+        method="POST"
+        data-netlify="true">
+
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+        <input id="name" name="name" type="text" required>
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <input id="email" name="email" type="email" required>
 
         <label for="message">Message</label>
         <textarea id="message" name="message" required></textarea>
 
         <button type="submit">Send Message</button>
     </form>
-</div>
+
+</main>
+
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleButton = document.querySelector('.menu-toggle');
-        const navMenu = document.getElementById('main-nav');
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.getElementById("main-nav");
 
-        toggleButton.addEventListener('click', () => {
-            // Toggle the 'open' class to slide the menu in and out
-            navMenu.classList.toggle('open');
-        });
+    toggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", isOpen);
+    });
 
-        // Optional: Close the menu when a link is clicked
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-            });
+    nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
         });
     });
+});
 </script>
+
 </body>
 </html>

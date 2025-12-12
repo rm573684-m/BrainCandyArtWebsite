@@ -6,99 +6,147 @@
 <title>About — Brain Candy Art</title>
 
 <style>
-/* --- NEW NAVIGATION CSS FOR MOBILE --- */
+/* ---------- VARIABLES ---------- */
+:root {
+    --color-text: #222;
+    --color-bg-light: #f7ede4;
+}
 
-/* Base Styles */
+/* ---------- GLOBAL ---------- */
+body {
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    color: var(--color-text);
+    background: var(--color-bg-light);
+    line-height: 1.6;
+}
+
+/* ---------------------------------
+   HEADER & NAVIGATION
+--------------------------------- */
 header {
-    /* Make the header fixed at the top for a smooth mobile experience */
     position: sticky;
     top: 0;
-    z-index: 100; /* Ensure it stays on top */
-    background: rgba(255, 255, 255, 0.95);
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Space icon and potential logo */
     align-items: center;
 }
 
-/* Menu Toggle (Hamburger Icon) */
+/* Hamburger Button */
 .menu-toggle {
-    display: block; /* Always visible on mobile */
     font-size: 30px;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-text);
     padding: 5px 10px;
-    z-index: 101; /* Above the nav links */
 }
 
-/* Navigation Links Container (Hidden Off-Canvas) */
+/* Navigation */
 .main-nav {
-    position: fixed; /* Fixed position relative to the viewport */
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 250px; /* Width of the revealed menu */
-    background: white; /* Solid background for the menu */
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%); /* Hides the menu completely off-screen */
-    transition: transform 0.4s ease-in-out;
     display: flex;
-    flex-direction: column;
-    padding-top: 60px; /* Space for the header */
+    justify-content: center;
+    margin: 0 auto;
 }
 
-/* Class to make the menu visible */
-.main-nav.open {
-    transform: translateX(0); /* Slides the menu into view */
-}
-
-/* Individual Links */
 .main-nav a {
-    padding: 15px 20px;
+    margin: 0 22px;
     text-decoration: none;
     color: var(--color-text);
-    font-size: 18px;
-    border-bottom: 1px solid #eee;
+    font-size: 19px;
 }
 
-.main-nav a:hover {
-    background: var(--color-bg-light); 
-}
+/* ---------- MOBILE NAV ---------- */
+@media (max-width: 768px) {
 
-/* --- DESKTOP VIEW (Min-width 768px) --- */
-@media (min-width: 768px) {
-    /* Hide the Hamburger Icon */
     .menu-toggle {
-        display: none; 
+        display: block;
     }
 
-    /* Make the Nav Bar look like the original design */
-    header {
-        justify-content: center;
-        padding: 18px 0; /* Restore original vertical padding */
-    }
-
-    /* Reset Nav from fixed/hidden state to inline state */
     .main-nav {
-        position: static; /* No longer fixed */
-        height: auto;
-        width: auto;
-        box-shadow: none;
-        transform: translateX(0); /* Always visible */
-        flex-direction: row; /* Links go side-by-side */
-        padding-top: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 250px;
+        background: #fff;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        flex-direction: column;
+        padding-top: 60px;
     }
 
-    /* Restore Original Desktop Link Styles */
+    .main-nav.open {
+        transform: translateX(0);
+    }
+
     .main-nav a {
-        padding: 0;
-        margin: 0 25px; /* Restore original spacing */
-        border-bottom: none;
-        font-size: 20px;
+        margin: 0;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+    }
+}
+
+/* ---------- DESKTOP ---------- */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+/* ---------------------------------
+   ABOUT PAGE CONTENT
+--------------------------------- */
+.main-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+.main-container h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about-content {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.text-column {
+    flex: 1;
+}
+
+.text-column h2 {
+    margin-top: 0;
+}
+
+.artist-image-container {
+    flex: 0 0 400px;
+}
+
+.artist-image-container img {
+    width: 100%;
+    display: block;
+}
+
+/* ---------- MOBILE CONTENT ---------- */
+@media (max-width: 768px) {
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .artist-image-container {
+        max-width: 350px;
+        margin: 0 auto;
     }
 }
 </style>
@@ -107,9 +155,14 @@ header {
 <body>
 
 <header>
-    <button class="menu-toggle" aria-label="Open Menu">
-        &#9776; </button>
-    
+    <button
+        type="button"
+        class="menu-toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false">
+        &#9776;
+    </button>
+
     <nav class="main-nav" id="main-nav">
         <a href="index.html">Home</a>
         <a href="inventory.html">Inventory</a>
@@ -118,54 +171,64 @@ header {
     </nav>
 </header>
 
-<div class="main-container">
+<main class="main-container">
+
     <h1>About Brain Candy Art</h1>
-    
-    <div class="about-content">
+
+    <section class="about-content">
+
         <div class="text-column">
-            
             <h2>The Project</h2>
             <p>
                 Brain Candy Art is a surreal collage project blending layered textures,
-                emotional storytelling, and bold yet human color. Each piece reflects an
-                energy shift — from joy and chaos to memory, dream logic, and absurdity.
+                emotional storytelling, and bold yet human color. Each piece reflects
+                an energy shift — from joy and chaos to memory, dream logic, and absurdity.
             </p>
 
             <h2>The Process</h2>
             <p>
                 The work draws inspiration from vintage print media, everyday objects,
-                and spontaneous fragments of imagery, all assembled to form new, often unexpected,
-                **narratives**. Our process is iterative and focused on capturing a singular, strong feeling.
+                and spontaneous fragments of imagery, all assembled to form new,
+                often unexpected, <strong>narratives</strong>.
+                Our process is iterative and focused on capturing a singular, strong feeling.
             </p>
-            
+
             <h2>The Artist</h2>
             <p>
-                [Insert a brief bio here about the artist's background and philosophy.] The artist's focus is on utilizing discarded materials to give them a second, unexpected life.
+                [Insert a brief bio here about the artist's background and philosophy.]
+                The artist focuses on utilizing discarded materials to give them a second,
+                unexpected life.
             </p>
         </div>
 
         <div class="artist-image-container">
-            <img src="https://via.placeholder.com/400x550/96B9E8/FFFFFF?text=Artist+Photo" alt="Photo of the Artist">
+            <img
+                src="https://via.placeholder.com/400x550/96B9E8/FFFFFF?text=Artist+Photo"
+                alt="Portrait of the artist">
         </div>
-    </div>
-</div>
+
+    </section>
+
+</main>
+
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleButton = document.querySelector('.menu-toggle');
-        const navMenu = document.getElementById('main-nav');
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.getElementById("main-nav");
 
-        toggleButton.addEventListener('click', () => {
-            // Toggle the 'open' class to slide the menu in and out
-            navMenu.classList.toggle('open');
-        });
+    toggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", isOpen);
+    });
 
-        // Optional: Close the menu when a link is clicked
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-            });
+    nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
         });
     });
+});
 </script>
+
 </body>
 </html>
