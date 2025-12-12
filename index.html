@@ -6,99 +6,254 @@
 <title>Home — Brain Candy Art</title>
 
 <style>
-/* --- NEW NAVIGATION CSS FOR MOBILE --- */
+/* --- VARIABLES & GLOBAL RESET --- */
+:root {
+    --color-peach: #ffb399;
+    --color-text: #222;
+    --color-bg-light: #f7ede4;
+    --font-serif: "Times New Roman", serif;
+    --transition-speed: 0.3s;
+}
 
-/* Base Styles */
+/* GLOBAL */
+body {
+    margin: 0;
+    font-family: var(--font-serif);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: var(--color-bg-light)
+        url("https://www.transparenttextures.com/patterns/diagonal-stripes.png");
+    background-size: 500px;
+}
+
+/* ---------------------------------
+   HEADER & NAVIGATION
+--------------------------------- */
 header {
-    /* Make the header fixed at the top for a smooth mobile experience */
     position: sticky;
     top: 0;
-    z-index: 100; /* Ensure it stays on top */
+    z-index: 100;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Space icon and potential logo */
     align-items: center;
 }
 
-/* Menu Toggle (Hamburger Icon) */
+/* Hamburger Button */
 .menu-toggle {
-    display: block; /* Always visible on mobile */
+    display: none;
     font-size: 30px;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--color-text);
     padding: 5px 10px;
-    z-index: 101; /* Above the nav links */
 }
 
-/* Navigation Links Container (Hidden Off-Canvas) */
+/* Navigation */
 .main-nav {
-    position: fixed; /* Fixed position relative to the viewport */
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 250px; /* Width of the revealed menu */
-    background: white; /* Solid background for the menu */
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%); /* Hides the menu completely off-screen */
-    transition: transform 0.4s ease-in-out;
     display: flex;
-    flex-direction: column;
-    padding-top: 60px; /* Space for the header */
+    justify-content: center;
+    width: auto;
+    margin: 0 auto;
 }
 
-/* Class to make the menu visible */
-.main-nav.open {
-    transform: translateX(0); /* Slides the menu into view */
-}
-
-/* Individual Links */
 .main-nav a {
-    padding: 15px 20px;
+    margin: 0 22px;
     text-decoration: none;
-    color: var(--color-text);
-    font-size: 18px;
-    border-bottom: 1px solid #eee;
+    color: #333;
+    font-size: 19px;
+    padding: 15px 0;
+    transition: color var(--transition-speed);
 }
 
 .main-nav a:hover {
-    background: var(--color-bg-light); 
+    color: var(--color-peach);
 }
 
-/* --- DESKTOP VIEW (Min-width 768px) --- */
-@media (min-width: 768px) {
-    /* Hide the Hamburger Icon */
-    .menu-toggle {
-        display: none; 
-    }
+/* ---------------------------------
+   MOBILE NAVIGATION
+--------------------------------- */
+@media (max-width: 768px) {
 
-    /* Make the Nav Bar look like the original design */
     header {
-        justify-content: center;
-        padding: 18px 0; /* Restore original vertical padding */
+        justify-content: flex-start;
     }
 
-    /* Reset Nav from fixed/hidden state to inline state */
+    .menu-toggle {
+        display: block;
+    }
+
     .main-nav {
-        position: static; /* No longer fixed */
-        height: auto;
-        width: auto;
-        box-shadow: none;
-        transform: translateX(0); /* Always visible */
-        flex-direction: row; /* Links go side-by-side */
-        padding-top: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 250px;
+        background: #fff;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        flex-direction: column;
+        padding-top: 60px;
     }
 
-    /* Restore Original Desktop Link Styles */
+    .main-nav.open {
+        transform: translateX(0);
+    }
+
     .main-nav a {
-        padding: 0;
-        margin: 0 25px; /* Restore original spacing */
-        border-bottom: none;
-        font-size: 20px;
+        margin: 0;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+        font-size: 18px;
+    }
+}
+
+/* ---------------------------------
+   LAYOUT
+--------------------------------- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+/* HERO */
+.hero-section {
+    display: flex;
+    gap: 50px;
+    padding: 80px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 60px;
+}
+
+.hero-image-large {
+    flex: 1;
+}
+
+.hero-image-large img {
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.hero-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text h1 {
+    font-size: 50px;
+    margin: 0 0 10px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    color: var(--color-peach);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+/* SECTION TITLE */
+.section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--color-peach);
+    padding-bottom: 10px;
+}
+
+/* GALLERY */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.gallery-item img {
+    width: 100%;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.gallery-item-title {
+    font-size: 1.4em;
+    margin: 5px 0 0;
+}
+
+.gallery-item-artist {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* AUXILIARY */
+.auxiliary-section {
+    padding-top: 40px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+}
+
+.atelier-block {
+    text-align: center;
+}
+
+.atelier-block h2 {
+    font-size: 30px;
+    border-bottom: 2px solid var(--color-peach);
+    padding-bottom: 10px;
+}
+
+.event-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.event-links a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: bold;
+}
+
+.event-links a:last-child {
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 60px;
+    color: #666;
+}
+
+/* MOBILE CONTENT */
+@media (max-width: 768px) {
+
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .hero-text h1 {
+        font-size: 8vw;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
     }
 }
 </style>
@@ -107,9 +262,13 @@ header {
 <body>
 
 <header>
-    <button class="menu-toggle" aria-label="Open Menu">
-        &#9776; </button>
-    
+    <button type="button"
+        class="menu-toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false">
+        &#9776;
+    </button>
+
     <nav class="main-nav" id="main-nav">
         <a href="index.html">Home</a>
         <a href="inventory.html">Inventory</a>
@@ -118,41 +277,51 @@ header {
     </nav>
 </header>
 
-<div class="container">
+<main class="container">
 
-    <div class="hero-section">
+    <section class="hero-section">
         <div class="hero-image-large">
-            <img src="https://via.placeholder.com/400x550/ffb399/222222?text=Featured+Art" alt="Detailed art featuring lips">
+            <img src="https://via.placeholder.com/400x550/ffb399/222222?text=Featured+Art"
+                 alt="Featured surreal collage artwork">
         </div>
+
         <div class="hero-text">
             <p class="subtitle">Brain Candy Art LLC</p>
             <h1>Surreal Collage & Vibrant Expression</h1>
-            <p>Each piece is a journey into the unexpected, combining classic imagery with modern, visceral energy. We create art that explores emotional storytelling and dream logic through layered textures.</p>
-            <p>Discover **Kerplewy**, our current featured piece, and explore the full collection.</p>
+            <p>
+                Each piece is a journey into the unexpected, combining classic
+                imagery with modern, visceral energy.
+            </p>
+            <p>
+                Discover <strong>Kerplewy</strong>, our current featured piece,
+                and explore the full collection.
+            </p>
         </div>
-    </div>
-    
+    </section>
+
     <div class="section-title">Recent Pieces</div>
-    
-    <div class="gallery-grid">
+
+    <section class="gallery-grid">
         <div class="gallery-item">
             <img src="Images/Another Brother.png" alt="Another Brother">
             <p class="gallery-item-title">Another Brother</p>
-            <p class="gallery-item-artist">Original Collage - 2025</p>
+            <p class="gallery-item-artist">Original Collage — 2025</p>
         </div>
+
         <div class="gallery-item">
             <img src="Images/Tempo.png" alt="Tempo">
             <p class="gallery-item-title">Tempo</p>
-            <p class="gallery-item-artist">Original Collage - 2025</p>
+            <p class="gallery-item-artist">Original Collage — 2025</p>
         </div>
+
         <div class="gallery-item">
             <img src="Images/Riverdale.png" alt="Riverdale">
             <p class="gallery-item-title">Riverdale</p>
-            <p class="gallery-item-artist">Original Collage - 2025</p>
+            <p class="gallery-item-artist">Original Collage — 2025</p>
         </div>
-    </div>
+    </section>
 
-    <div class="auxiliary-section">
+    <section class="auxiliary-section">
         <div class="atelier-block">
             <h2>Find us @</h2>
             <div class="event-links">
@@ -160,27 +329,30 @@ header {
                 <a href="#">447 3rd St, Macon, GA 31201</a>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+
+</main>
+
+<footer>© 2025 Brain Candy Art LLC</footer>
+
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleButton = document.querySelector('.menu-toggle');
-        const navMenu = document.getElementById('main-nav');
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.getElementById("main-nav");
 
-        toggleButton.addEventListener('click', () => {
-            // Toggle the 'open' class to slide the menu in and out
-            navMenu.classList.toggle('open');
-        });
+    toggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", isOpen);
+    });
 
-        // Optional: Close the menu when a link is clicked
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-            });
+    nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
         });
     });
+});
 </script>
-<footer>© 2025 Brain Candy Art LLC </footer>
 
 </body>
 </html>
