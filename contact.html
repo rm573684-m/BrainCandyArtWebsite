@@ -6,139 +6,99 @@
 <title>Contact — Brain Candy Art</title>
 
 <style>
+/* --- NEW NAVIGATION CSS FOR MOBILE --- */
 
-/* --- VARIABLES & GLOBAL RESET --- */
-:root {
-    --color-peach: #ffb399; /* Light Peach Accent */
-    --color-text: #222;
-    --color-bg-light: #fcf8f3; /* CREAM BACKGROUND */
-    --font-serif: "Times New Roman", serif;
-    --color-hover-bg: #e69980; /* A slightly darker peach for hover */
-}
-
-/* GLOBAL */
-body {
-    margin: 0;
-    font-family: var(--font-serif);
-    /* BACKGROUND: Cream color with paper fibers texture */
-    background: var(--color-bg-light) url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-    background-size: 500px;
-    color: var(--color-text);
-}
-
-body::before {
-    content: "";
-    position: fixed; inset: 0;
-    background-color: var(--color-bg-light); 
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* NAV */
-nav {
+/* Base Styles */
+header {
+    /* Make the header fixed at the top for a smooth mobile experience */
     position: sticky;
     top: 0;
-    z-index: 10;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(10px);
-    padding: 18px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    z-index: 100; /* Ensure it stays on top */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Space icon and potential logo */
+    align-items: center;
 }
 
-nav a {
-    margin: 0 25px;
-    text-decoration: none;
-    color: #222;
-    transition: 0.3s;
-    font-size: 20px;
-}
-nav a:hover { 
-    color: var(--color-peach); 
-}
-
-/* CONTACT FORM */
-.container {
-    width: 85%;
-    max-width: 800px;
-    margin: 80px auto;
-    /* Keep content box white for contrast */
-    background: white; 
-    padding: 40px;
-    border: 1px solid #ddd; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border-radius: 0;
-}
-
-h1 {
-    font-size: 52px;
-    border-bottom: 2px solid var(--color-peach); 
-    padding-bottom: 8px;
-    margin-bottom: 40px;
-    display: inline-block;
-}
-
-label {
-    display: block;
-    font-size: 18px;
-    margin: 20px 0 8px;
-    font-weight: bold;
-    color: var(--color-text); 
-}
-
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #222; 
-    background: transparent;
-    font-size: 18px;
-    font-family: inherit;
-    box-sizing: border-box;
-    border-radius: 0;
-}
-textarea { height: 160px; }
-
-
-/* BUTTON STYLING */
-button {
-    margin-top: 30px;
-    padding: 14px 40px;
-    border: 2px solid var(--color-peach); 
-    background: var(--color-peach); 
-    color: white;
-    letter-spacing: 1px;
-    font-size: 18px;
+/* Menu Toggle (Hamburger Icon) */
+.menu-toggle {
+    display: block; /* Always visible on mobile */
+    font-size: 30px;
+    background: none;
+    border: none;
     cursor: pointer;
-    border-radius: 0;
-    transition: 0.3s;
-    font-weight: bold;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    color: var(--color-text);
+    padding: 5px 10px;
+    z-index: 101; /* Above the nav links */
 }
 
-button:hover {
-    background: var(--color-hover-bg); 
-    color: white;
-    border-color: var(--color-hover-bg);
+/* Navigation Links Container (Hidden Off-Canvas) */
+.main-nav {
+    position: fixed; /* Fixed position relative to the viewport */
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px; /* Width of the revealed menu */
+    background: white; /* Solid background for the menu */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%); /* Hides the menu completely off-screen */
+    transition: transform 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px; /* Space for the header */
 }
 
-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 179, 153, 0.5); 
+/* Class to make the menu visible */
+.main-nav.open {
+    transform: translateX(0); /* Slides the menu into view */
 }
 
-button:active {
-    background: var(--color-hover-bg); 
-    transform: translateY(1px);
+/* Individual Links */
+.main-nav a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
 }
 
-/* MOBILE ADJUSTMENT */
-@media (max-width: 600px) {
-    .container {
-        width: 95%;
-        margin: 50px auto;
-        padding: 20px;
+.main-nav a:hover {
+    background: var(--color-bg-light); 
+}
+
+/* --- DESKTOP VIEW (Min-width 768px) --- */
+@media (min-width: 768px) {
+    /* Hide the Hamburger Icon */
+    .menu-toggle {
+        display: none; 
+    }
+
+    /* Make the Nav Bar look like the original design */
+    header {
+        justify-content: center;
+        padding: 18px 0; /* Restore original vertical padding */
+    }
+
+    /* Reset Nav from fixed/hidden state to inline state */
+    .main-nav {
+        position: static; /* No longer fixed */
+        height: auto;
+        width: auto;
+        box-shadow: none;
+        transform: translateX(0); /* Always visible */
+        flex-direction: row; /* Links go side-by-side */
+        padding-top: 0;
+    }
+
+    /* Restore Original Desktop Link Styles */
+    .main-nav a {
+        padding: 0;
+        margin: 0 25px; /* Restore original spacing */
+        border-bottom: none;
+        font-size: 20px;
     }
 }
 </style>
@@ -146,12 +106,17 @@ button:active {
 
 <body>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="inventory.html">Inventory</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-</nav>
+<header>
+    <button class="menu-toggle" aria-label="Open Menu">
+        &#9776; </button>
+    
+    <nav class="main-nav" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="inventory.html">Inventory</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
 
 <div class="container">
 
@@ -172,6 +137,23 @@ button:active {
         <button type="submit">Send Message</button>
     </form>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.querySelector('.menu-toggle');
+        const navMenu = document.getElementById('main-nav');
 
+        toggleButton.addEventListener('click', () => {
+            // Toggle the 'open' class to slide the menu in and out
+            navMenu.classList.toggle('open');
+        });
+
+        // Optional: Close the menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+            });
+        });
+    });
+</script>
 </body>
 </html>

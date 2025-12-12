@@ -6,250 +6,117 @@
 <title>Inventory — Brain Candy Art</title>
 
 <style>
+/* --- NEW NAVIGATION CSS FOR MOBILE --- */
 
-/* --- VARIABLES & GLOBAL RESET --- */
-:root {
-    --color-peach: #ffb399; 
-    --color-text: #222;
-    --color-bg-light: #f7ede4; /* Light Cream Color */
-    --font-serif: "Times New Roman", serif;
-    --transition-speed: 0.4s;
-    --gap-size: 50px; 
-}
-
-/* GLOBAL */
-body {
-    margin: 0;
-    font-family: var(--font-serif);
-    color: var(--color-text);
-    line-height: 1.6;
-    overflow-x: hidden; 
-    
-    /* BACKGROUND FIX: Using the CreamTexturedPaper.png directly */
-    background: var(--color-bg-light) url('Images/CreamTexturedPaper.png');
-    background-size: 500px;
-}
-
-/* REMOVED: The old colored body::before gradient is gone. */
-
-/* NAV */
-nav {
+/* Base Styles */
+header {
+    /* Make the header fixed at the top for a smooth mobile experience */
     position: sticky;
     top: 0;
-    z-index: 10;
-    background: rgba(255,255,255,0.88); 
-    backdrop-filter: blur(10px);
-    padding: 18px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-nav a {
-    margin: 0 25px;
-    text-decoration: none;
-    color: #333;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-    transition: var(--transition-speed);
-}
-nav a:hover { color: var(--color-peach); }
-
-/* HEADER */
-.header { text-align: center; padding: 100px 25px 60px; } 
-.header h1 { font-size: 52px; font-weight: 400; letter-spacing: 2px; margin-bottom: 15px; color: var(--color-text); }
-.header p { font-size: 20px; color: #555; }
-
-/* -------------------------------------------
-   --- MOBILE-FOCUSED SIZES BLOCK (BELOW GALLERY) ---
-   ------------------------------------------- */
-.sizes { 
-    /* Cleaner, single column look for mobile flow */
-    width: 90%; 
-    max-width: 600px; /* Increased max width slightly */
-    margin: 60px auto; /* More vertical space */
-    background: white; 
-    padding: 40px; 
-    border-radius: 5px; 
-    border: 1px solid #ddd; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-    text-align: center;
+    z-index: 100; /* Ensure it stays on top */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Space icon and potential logo */
+    align-items: center;
 }
 
-/* Stylized Title */
-.sizes h2 { 
+/* Menu Toggle (Hamburger Icon) */
+.menu-toggle {
+    display: block; /* Always visible on mobile */
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
     color: var(--color-text);
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 25px; 
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--color-peach); /* Use peach line for emphasis */
+    padding: 5px 10px;
+    z-index: 101; /* Above the nav links */
 }
 
-/* Size List Container */
-.size-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-}
-
-/* Individual Size Items */
-.size-list li {
-    font-size: 18px; 
-    color: #555; 
-    font-weight: 400;
-    margin: 10px 0;
-    padding: 0;
-    /* Using an emoji or custom bullet point for style */
-}
-.size-list li::before {
-    content: "•";
-    color: var(--color-peach);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-}
-
-/* Highlight for Originals */
-.size-list li:last-child {
-    font-weight: bold;
-    color: var(--color-peach);
-    margin-top: 25px;
-    border-top: 1px dashed #ddd; /* Subtle separation */
-    padding-top: 15px;
-}
-.size-list li:last-child::before {
-    content: "★";
-}
-
-/* -------------------------------------------
-   --- HORIZONTAL SCROLLING LAYOUT (Unchanged) ---
-   ------------------------------------------- */
-
-/* 1. CONTAINER FOR HORIZONTAL SCROLL */
-.gallery-wrapper {
-    width: 100%;
-    margin: 40px 0 80px 0; 
-    overflow-x: scroll; 
-    overflow-y: hidden;
-    padding-bottom: 20px; 
-    
-    /* Hide scrollbar visually but keep function */
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
-}
-.gallery-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* 2. THE FLEXBOX GALLERY (Sets the items side-by-side) */
-.grid {
-    display: flex; 
-    gap: var(--gap-size); 
-    
-    width: fit-content; 
-    padding: 0 80px; 
-}
-
-/* 3. ITEM STYLING (Smaller Fixed width + Block appearance) */
-.item {
-    flex-shrink: 0; 
-    width: 280px; 
-    height: auto;
-    
-    background: white; 
-    padding: 20px; 
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05); 
-    
-    transition: all var(--transition-speed) ease-in-out;
-    text-align: left; 
-    
-    opacity: 1; 
-    transform: none;
-    
+/* Navigation Links Container (Hidden Off-Canvas) */
+.main-nav {
+    position: fixed; /* Fixed position relative to the viewport */
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px; /* Width of the revealed menu */
+    background: white; /* Solid background for the menu */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%); /* Hides the menu completely off-screen */
+    transition: transform 0.4s ease-in-out;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    padding-top: 60px; /* Space for the header */
 }
 
-
-/* 4. HOVER EFFECT */
-.item:hover {
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12); 
-    z-index: 1;
+/* Class to make the menu visible */
+.main-nav.open {
+    transform: translateX(0); /* Slides the menu into view */
 }
 
-/* 5. IMAGE CONTAINER FOR CENTERING */
-.image-container {
-    width: 100%;
-    height: 280px; 
-    
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    
-    background-color: #f8f8f8; 
-    border: 1px solid #eee;
+/* Individual Links */
+.main-nav a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
 }
 
-.item img {
-    max-width: 100%;
-    max-height: 100%;
-    height: auto; 
-    width: auto;
-    
-    object-fit: contain; 
-    
-    display: block;
-    box-shadow: none;
-    transition: transform var(--transition-speed);
+.main-nav a:hover {
+    background: var(--color-bg-light); 
 }
 
-.item:hover img {
-    transform: scale(1.005); 
+/* --- DESKTOP VIEW (Min-width 768px) --- */
+@media (min-width: 768px) {
+    /* Hide the Hamburger Icon */
+    .menu-toggle {
+        display: none; 
+    }
+
+    /* Make the Nav Bar look like the original design */
+    header {
+        justify-content: center;
+        padding: 18px 0; /* Restore original vertical padding */
+    }
+
+    /* Reset Nav from fixed/hidden state to inline state */
+    .main-nav {
+        position: static; /* No longer fixed */
+        height: auto;
+        width: auto;
+        box-shadow: none;
+        transform: translateX(0); /* Always visible */
+        flex-direction: row; /* Links go side-by-side */
+        padding-top: 0;
+    }
+
+    /* Restore Original Desktop Link Styles */
+    .main-nav a {
+        padding: 0;
+        margin: 0 25px; /* Restore original spacing */
+        border-bottom: none;
+        font-size: 20px;
+    }
 }
-
-/* DETAILS BELOW IMAGE */
-.item-details { 
-    padding: 20px 0 0 0; 
-    height: 70px; 
-    overflow: hidden;
-    text-align: center; 
-}
-.item-details p { 
-    margin: 0 0 5px 0; 
-    font-size: 1.1em; 
-    font-weight: normal; 
-    color: var(--color-text); 
-    line-height: 1.2;
-}
-
-/* HIDE THE PRICE LINE */
-.item-details .price { display: none; } 
-
-.item-details .category { 
-    font-size: 0.9em; 
-    color: #888; 
-    text-transform: uppercase; 
-    font-weight: bold; 
-}
-
-/* FOOTER */
-footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
-
 </style>
 </head>
 
 <body>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="inventory.html">Inventory</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-</nav>
+<header>
+    <button class="menu-toggle" aria-label="Open Menu">
+        &#9776; </button>
+    
+    <nav class="main-nav" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="inventory.html">Inventory</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
 
 <div class="header">
     <h1>Art Inventory</h1>
@@ -552,6 +419,23 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
 </div>
 
 <footer>© 2025 Brain Candy Art LLC</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.querySelector('.menu-toggle');
+        const navMenu = document.getElementById('main-nav');
 
+        toggleButton.addEventListener('click', () => {
+            // Toggle the 'open' class to slide the menu in and out
+            navMenu.classList.toggle('open');
+        });
+
+        // Optional: Close the menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+            });
+        });
+    });
+</script>
 </body>
 </html>

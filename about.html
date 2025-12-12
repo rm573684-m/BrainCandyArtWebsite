@@ -6,129 +6,99 @@
 <title>About — Brain Candy Art</title>
 
 <style>
+/* --- NEW NAVIGATION CSS FOR MOBILE --- */
 
-/* --- VARIABLES & GLOBAL RESET --- */
-:root {
-    --color-peach: #ffb399; /* Light Peach Accent */
-    --color-text: #222;
-    --color-bg-light: #fcf8f3; /* CREAM BACKGROUND */
-    --font-serif: "Times New Roman", serif;
-}
-
-/* GLOBAL */
-body {
-    margin: 0;
-    font-family: var(--font-serif);
-    /* BACKGROUND: Cream color with paper fibers texture */
-    background: var(--color-bg-light) url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-    background-size: 500px;
-    color: var(--color-text);
-    line-height: 1.6;
-}
-
-body::before {
-    content: "";
-    position: fixed; inset: 0;
-    background: radial-gradient(circle at top right,
-        rgba(255,179,153,0.15), 
-        rgba(158,212,209,0.12),
-        rgba(150,185,232,0.12),
-        rgba(201,167,255,0.12));
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* NAV - (Original User Code) */
-nav {
+/* Base Styles */
+header {
+    /* Make the header fixed at the top for a smooth mobile experience */
     position: sticky;
     top: 0;
-    z-index: 10;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(10px);
-    padding: 18px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-nav a {
-    margin: 0 25px;
-    text-decoration: none;
-    color: #222;
-    font-size: 20px;
-    transition: 0.3s;
-}
-nav a:hover {
-    color: var(--color-peach); 
-}
-
-/* CONTENT */
-.main-container {
-    width: 85%;
-    max-width: 1000px;
-    margin: 70px auto;
-}
-
-h1 {
-    font-size: 52px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--color-peach); 
-    padding-bottom: 8px;
-    display: inline-block;
-}
-
-.about-content {
+    z-index: 100; /* Ensure it stays on top */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 10px 20px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 60px;
-    margin-top: 40px;
+    justify-content: space-between; /* Space icon and potential logo */
+    align-items: center;
 }
 
-.text-column {
-    flex: 2; 
-    min-width: 300px;
-}
-
-.artist-image-container {
-    flex: 1; 
-    max-width: 350px;
-    align-self: flex-start; 
-}
-
-.artist-image-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-    border: 1px solid #ddd; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-h2 {
-    color: var(--color-text); 
+/* Menu Toggle (Hamburger Icon) */
+.menu-toggle {
+    display: block; /* Always visible on mobile */
     font-size: 30px;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    padding: 5px 10px;
+    z-index: 101; /* Above the nav links */
 }
 
-p {
-    font-size: 20px;
-    margin-bottom: 25px;
+/* Navigation Links Container (Hidden Off-Canvas) */
+.main-nav {
+    position: fixed; /* Fixed position relative to the viewport */
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px; /* Width of the revealed menu */
+    background: white; /* Solid background for the menu */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%); /* Hides the menu completely off-screen */
+    transition: transform 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px; /* Space for the header */
 }
 
-/* MOBILE ADJUSTMENT */
-@media (max-width: 768px) {
-    .about-content {
-        flex-direction: column;
-        gap: 30px;
+/* Class to make the menu visible */
+.main-nav.open {
+    transform: translateX(0); /* Slides the menu into view */
+}
+
+/* Individual Links */
+.main-nav a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+.main-nav a:hover {
+    background: var(--color-bg-light); 
+}
+
+/* --- DESKTOP VIEW (Min-width 768px) --- */
+@media (min-width: 768px) {
+    /* Hide the Hamburger Icon */
+    .menu-toggle {
+        display: none; 
     }
-    .artist-image-container {
-        max-width: 100%;
-        order: -1; 
-        margin-bottom: 10px;
+
+    /* Make the Nav Bar look like the original design */
+    header {
+        justify-content: center;
+        padding: 18px 0; /* Restore original vertical padding */
     }
-    .text-column {
-        min-width: unset;
-        width: 100%;
+
+    /* Reset Nav from fixed/hidden state to inline state */
+    .main-nav {
+        position: static; /* No longer fixed */
+        height: auto;
+        width: auto;
+        box-shadow: none;
+        transform: translateX(0); /* Always visible */
+        flex-direction: row; /* Links go side-by-side */
+        padding-top: 0;
+    }
+
+    /* Restore Original Desktop Link Styles */
+    .main-nav a {
+        padding: 0;
+        margin: 0 25px; /* Restore original spacing */
+        border-bottom: none;
+        font-size: 20px;
     }
 }
 </style>
@@ -136,12 +106,17 @@ p {
 
 <body>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="inventory.html">Inventory</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-</nav>
+<header>
+    <button class="menu-toggle" aria-label="Open Menu">
+        &#9776; </button>
+    
+    <nav class="main-nav" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="inventory.html">Inventory</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
 
 <div class="main-container">
     <h1>About Brain Candy Art</h1>
@@ -174,6 +149,23 @@ p {
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.querySelector('.menu-toggle');
+        const navMenu = document.getElementById('main-nav');
 
+        toggleButton.addEventListener('click', () => {
+            // Toggle the 'open' class to slide the menu in and out
+            navMenu.classList.toggle('open');
+        });
+
+        // Optional: Close the menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+            });
+        });
+    });
+</script>
 </body>
 </html>
