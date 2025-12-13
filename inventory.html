@@ -16,16 +16,25 @@
     --gap-size: 50px; 
 }
 
+/* ---------- GLOBAL ---------- */
 body {
     margin: 0;
-    font-family: var(--font-serif);
+    font-family: "Times New Roman", serif;
     color: var(--color-text);
     line-height: 1.6;
-    overflow-x: hidden; 
-    
-    /* BACKGROUND FIX: Using the CreamTexturedPaper.png directly */
-    background: var(--color-bg-light) url('Images/CreamTexturedPaper.png');
+    overflow-x: hidden;
+    background: var(--color-bg-light)
+        url('https://www.transparenttextures.com/patterns/diagonal-stripes.png');
     background-size: 500px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-bg-light);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* --- NEW NAVIGATION CSS FOR MOBILE --- */
@@ -56,38 +65,86 @@ header {
     z-index: 101;
 }
 
-/* Navigation Links Container (Hidden Off-Canvas) */
-.main-nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 250px;
-    background: white;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%);
-    transition: transform 0.4s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    padding-top: 60px;
-}
 
-/* Class to make the menu visible */
-.main-nav.open {
-    transform: translateX(0);
+/* Navigation Links Container */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-grow: 1;
 }
 
 /* Individual Links */
 .main-nav a {
-    padding: 15px 20px;
+    padding: 15px 0;
+    margin: 0 22px;
     text-decoration: none;
     color: var(--color-text);
-    font-size: 18px;
-    border-bottom: 1px solid #eee;
+    font-size: 19px;
 }
 
 .main-nav a:hover {
-    background: var(--color-bg-light); 
+    color: var(--color-peach);
+}
+
+/* Navigation */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    margin: 0 auto;
+}
+
+.main-nav a {
+    margin: 0 22px;
+    text-decoration: none;
+    color: #333;
+    font-size: 19px;
+    padding: 15px 0;
+    transition: color var(--transition-speed);
+}
+
+.main-nav a:hover {
+    color: var(--color-peach);
+}
+
+/* ---------------------------------
+   MOBILE NAVIGATION
+--------------------------------- */
+@media (max-width: 768px) {
+
+    header {
+        justify-content: flex-start;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 250px;
+        background: #fff;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        flex-direction: column;
+        padding-top: 60px;
+    }
+
+    .main-nav.open {
+        transform: translateX(0);
+    }
+
+    .main-nav a {
+        margin: 0;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+        font-size: 18px;
+    }
 }
 
 /* --- DESKTOP VIEW (Min-width 768px) --- */
@@ -325,7 +382,7 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
 
         <div class="item">
             <div class="image-container">
-                <img src="Images/All%20standing.png" alt="All Standing collage">
+                <img src="Images/Ali%20Standing.png" alt="Ali Standing collage">
             </div>
             <div class="item-details">
                 <p>All Standing</p>
@@ -424,7 +481,7 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
 
         <div class="item">
             <div class="image-container">
-                <img src="Images/Il%20Venere%20di%20Rea.png" alt="Il Venere di Rea collage">
+                <img src="Images/Il%20Venere%20di%20Resa.png" alt="Il Venere di Rea collage">
             </div>
             <div class="item-details">
                 <p>Il Venere di Rea</p>
@@ -538,17 +595,6 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
             </div>
             <div class="item-details">
                 <p>Paper Doll</p>
-                <p class="category">Prints Available</p>
-                <p class="price">Prints from $45</p>
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="image-container">
-                <img src="Images/Rudkus.png" alt="Rudkus collage">
-            </div>
-            <div class="item-details">
-                <p>Rudkus</p>
                 <p class="category">Prints Available</p>
                 <p class="price">Prints from $45</p>
             </div>
