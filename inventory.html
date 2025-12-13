@@ -8,8 +8,24 @@
 <style>
 /* ✅ TECH FIX: missing variables */
 :root {
+    --color-peach: #ffb399; 
     --color-text: #222;
-    --color-bg-light: #f7ede4;
+    --color-bg-light: #f7ede4; /* Light Cream Color */
+    --font-serif: "Times New Roman", serif;
+    --transition-speed: 0.4s;
+    --gap-size: 50px; 
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-serif);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden; 
+    
+    /* BACKGROUND FIX: Using the CreamTexturedPaper.png directly */
+    background: var(--color-bg-light) url('Images/CreamTexturedPaper.png');
+    background-size: 500px;
 }
 
 /* --- NEW NAVIGATION CSS FOR MOBILE --- */
@@ -102,6 +118,124 @@ header {
         font-size: 20px;
     }
 }
+
+/* -------------------------------------------
+   --- HORIZONTAL SCROLLING LAYOUT (Unchanged) ---
+   ------------------------------------------- */
+
+/* 1. CONTAINER FOR HORIZONTAL SCROLL */
+.gallery-wrapper {
+    width: 100%;
+    margin: 40px 0 80px 0; 
+    overflow-x: scroll; 
+    overflow-y: hidden;
+    padding-bottom: 20px; 
+    
+    /* Hide scrollbar visually but keep function */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+.gallery-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* 2. THE FLEXBOX GALLERY (Sets the items side-by-side) */
+.grid {
+    display: flex; 
+    gap: var(--gap-size); 
+    
+    width: fit-content; 
+    padding: 0 80px; 
+}
+
+/* 3. ITEM STYLING (Smaller Fixed width + Block appearance) */
+.item {
+    flex-shrink: 0; 
+    width: 280px; 
+    height: auto;
+    
+    background: white; 
+    padding: 20px; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05); 
+    
+    transition: all var(--transition-speed) ease-in-out;
+    text-align: left; 
+    
+    opacity: 1; 
+    transform: none;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+
+/* 4. HOVER EFFECT */
+.item:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12); 
+    z-index: 1;
+}
+
+/* 5. IMAGE CONTAINER FOR CENTERING */
+.image-container {
+    width: 100%;
+    height: 280px; 
+    
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    
+    background-color: #f8f8f8; 
+    border: 1px solid #eee;
+}
+
+.item img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto; 
+    width: auto;
+    
+    object-fit: contain; 
+    
+    display: block;
+    box-shadow: none;
+    transition: transform var(--transition-speed);
+}
+
+.item:hover img {
+    transform: scale(1.005); 
+}
+
+/* DETAILS BELOW IMAGE */
+.item-details { 
+    padding: 20px 0 0 0; 
+    height: 70px; 
+    overflow: hidden;
+    text-align: center; 
+}
+.item-details p { 
+    margin: 0 0 5px 0; 
+    font-size: 1.1em; 
+    font-weight: normal; 
+    color: var(--color-text); 
+    line-height: 1.2;
+}
+
+/* HIDE THE PRICE LINE */
+.item-details .price { display: none; } 
+
+.item-details .category { 
+    font-size: 0.9em; 
+    color: #888; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+}
+
+/* FOOTER */
+footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
+
 </style>
 </head>
 
