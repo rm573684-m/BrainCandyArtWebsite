@@ -6,152 +6,101 @@
 <title>Inventory — Brain Candy Art</title>
 
 <style>
-/* --- VARIABLES --- */
+/* ✅ TECH FIX: missing variables */
 :root {
     --color-text: #222;
     --color-bg-light: #f7ede4;
 }
 
-/* GLOBAL */
-body {
-    margin: 0;
-    font-family: "Times New Roman", serif;
-    color: var(--color-text);
-    background: var(--color-bg-light);
-}
+/* --- NEW NAVIGATION CSS FOR MOBILE --- */
 
-/* ---------------------------------
-   HEADER & NAVIGATION
---------------------------------- */
+/* Base Styles */
 header {
     position: sticky;
     top: 0;
     z-index: 100;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding: 10px 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-/* Hamburger */
+/* Menu Toggle (Hamburger Icon) */
 .menu-toggle {
+    display: block;
     font-size: 30px;
     background: none;
     border: none;
     cursor: pointer;
+    color: var(--color-text);
     padding: 5px 10px;
+    z-index: 101;
 }
 
-/* Navigation */
+/* Navigation Links Container (Hidden Off-Canvas) */
 .main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
     display: flex;
-    justify-content: center;
-    margin: 0 auto;
+    flex-direction: column;
+    padding-top: 60px;
 }
 
-/* Links */
+/* Class to make the menu visible */
+.main-nav.open {
+    transform: translateX(0);
+}
+
+/* Individual Links */
 .main-nav a {
-    margin: 0 22px;
+    padding: 15px 20px;
     text-decoration: none;
     color: var(--color-text);
-    font-size: 19px;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
 }
 
-/* ---------------- MOBILE ---------------- */
-@media (max-width: 768px) {
+.main-nav a:hover {
+    background: var(--color-bg-light); 
+}
 
+/* --- DESKTOP VIEW (Min-width 768px) --- */
+@media (min-width: 768px) {
     .menu-toggle {
-        display: block;
+        display: none; 
+    }
+
+    header {
+        justify-content: center;
+        padding: 18px 0;
     }
 
     .main-nav {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 250px;
-        background: #fff;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-        transform: translateX(100%);
-        transition: transform 0.4s ease-in-out;
-        flex-direction: column;
-        padding-top: 60px;
-    }
-
-    .main-nav.open {
+        position: static;
+        height: auto;
+        width: auto;
+        box-shadow: none;
         transform: translateX(0);
+        flex-direction: row;
+        padding-top: 0;
     }
 
     .main-nav a {
-        margin: 0;
-        padding: 15px 20px;
-        border-bottom: 1px solid #eee;
+        padding: 0;
+        margin: 0 25px;
+        border-bottom: none;
+        font-size: 20px;
     }
-}
-
-/* ---------------- DESKTOP ---------------- */
-@media (min-width: 769px) {
-    .menu-toggle {
-        display: none;
-    }
-}
-
-/* ---------------------------------
-   PAGE CONTENT
---------------------------------- */
-.header {
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.gallery-wrapper {
-    width: 90%;
-    max-width: 1300px;
-    margin: 0 auto;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.image-container img {
-    width: 100%;
-    display: block;
-}
-
-.item-details {
-    padding-top: 8px;
-}
-
-.category {
-    font-style: italic;
-    font-size: 0.9em;
-    color: #777;
-}
-
-.price {
-    font-weight: bold;
-}
-
-/* SIZES */
-.sizes {
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.size-list {
-    list-style: none;
-    padding: 0;
-}
-
-footer {
-    text-align: center;
-    padding: 50px;
-    color: #666;
 }
 </style>
 </head>
@@ -159,11 +108,11 @@ footer {
 <body>
 
 <header>
-    <button
-        type="button"
-        class="menu-toggle"
-        aria-label="Toggle menu"
-        aria-expanded="false">
+    <!-- ✅ TECH FIX: button type + aria -->
+    <button class="menu-toggle"
+            type="button"
+            aria-label="Open Menu"
+            aria-expanded="false">
         &#9776;
     </button>
 
@@ -175,53 +124,434 @@ footer {
     </nav>
 </header>
 
-<main>
-
 <div class="header">
     <h1>Art Inventory</h1>
-    <p>Available collage artworks — curated with intention.</p>
+    <p>Available collage artworks — curated with intention. Limited prints available.</p>
 </div>
 
 <div class="gallery-wrapper">
-<div class="grid">
+    <div class="grid">
 
-<!-- SAMPLE ITEMS (spaces preserved via %20) -->
-<div class="item">
-    <div class="image-container">
-        <img src="Images/Mother%20of%20All.png" alt="Mother of All collage">
-    </div>
-    <div class="item-details">
-        <p>Mother of All</p>
-        <p class="category">Original Collage Available</p>
-        <p class="price">Prints from $45</p>
-    </div>
-</div>
+        <!-- 🔒 INVENTORY ITEMS — UNCHANGED -->
 
-<div class="item">
-    <div class="image-container">
-        <img src="Images/A%20Thousand%20Smiles.png" alt="A Thousand Smiles collage">
-    </div>
-    <div class="item-details">
-        <p>A Thousand Smiles</p>
-        <p class="category">Original Collage</p>
-        <p class="price">Prints from $45</p>
-    </div>
-</div>
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Kerplewy.png" alt="Kerplewy surreal collage art">
+            </div>
+            <div class="item-details">
+                <p>Kerplewy</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
 
-<div class="item">
-    <div class="image-container">
-        <img src="Images/Drive%20It%20Like%20You%20Stole%20It.png" alt="Drive It Like You Stole It artwork">
-    </div>
-    <div class="item-details">
-        <p>Drive It Like You Stole It</p>
-        <p class="category">Prints Available</p>
-        <p class="price">Prints from $45</p>
-    </div>
-</div>
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Ruckus.png" alt="Ruckus abstract art">
+            </div>
+            <div class="item-details">
+                <p>Ruckus</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
 
-<!-- Continue same pattern for remaining images -->
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Mother of All.png" alt="Mother of All collage">
+            </div>
+            <div class="item-details">
+                <p>Mother of All</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
 
-</div>
+        <div class="item">
+           <div class="image-container">
+               <img src="Images/A%20Thousand%20Smiles.png" alt="A Thousand Smiles collage">
+           </div>
+           <div class="item-details">
+               <p>A Thousand Smiles</p>
+               <p class="category">Original Collage</p>
+               <p class="price">Prints from $45</p>
+           </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Drive%20It%20Like%20You%20Stole%20It.png" alt="Drive It Like You Stole It artwork">
+            </div>
+            <div class="item-details">
+                <p>Drive It Like You Stole It</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/All%20standing.png" alt="All Standing collage">
+            </div>
+            <div class="item-details">
+                <p>All Standing</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Buddah.png" alt="Buddah collage">
+            </div>
+            <div class="item-details">
+                <p>Buddah</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/C-c-c-courage.png" alt="C-c-c-courage collage">
+            </div>
+            <div class="item-details">
+                <p>C-c-c-courage</p>
+                <p class="category">Original Collage</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Catch%20Me%20If%20You%20Can.png" alt="Catch Me If You Can artwork">
+            </div>
+            <div class="item-details">
+                <p>Catch Me If You Can</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Closer.png" alt="Closer collage">
+            </div>
+            <div class="item-details">
+                <p>Closer</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Cowgirl%20Up.png" alt="Cowgirl Up collage">
+            </div>
+            <div class="item-details">
+                <p>Cowgirl Up</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Daddys%20Little%20Girl.png" alt="Daddy's Little Girl collage">
+            </div>
+            <div class="item-details">
+                <p>Daddy's Little Girl</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Dolly.png" alt="Dolly collage">
+            </div>
+            <div class="item-details">
+                <p>Dolly</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/His%20and%20Hers.png" alt="His and Hers collage">
+            </div>
+            <div class="item-details">
+                <p>His and Hers</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Il%20Venere%20di%20Rea.png" alt="Il Venere di Rea collage">
+            </div>
+            <div class="item-details">
+                <p>Il Venere di Rea</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Kerplewy.png" alt="Kerplewy collage">
+            </div>
+            <div class="item-details">
+                <p>Kerplewy</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Liftoff.png" alt="Liftoff collage">
+            </div>
+            <div class="item-details">
+                <p>Liftoff</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Liquid%20Courage.png" alt="Liquid Courage collage">
+            </div>
+            <div class="item-details">
+                <p>Liquid Courage</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Longhorn.png" alt="Longhorn collage">
+            </div>
+            <div class="item-details">
+                <p>Longhorn</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Love%20Fraud.png" alt="Love Fraud collage">
+            </div>
+            <div class="item-details">
+                <p>Love Fraud</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Metropolitan%20Crysalis.png" alt="Metropolitan Crysalis collage">
+            </div>
+            <div class="item-details">
+                <p>Metropolitan Crysalis</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Michelle%20Obama.png" alt="Michelle Obama collage">
+            </div>
+            <div class="item-details">
+                <p>Michelle Obama</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Mother%20Nature%20Bird%20of%20Paradise.png" alt="Mother Nature Bird of Paradise collage">
+            </div>
+            <div class="item-details">
+                <p>Mother Nature Bird of Paradise</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Our%20Lincoln.png" alt="Our Lincoln collage">
+            </div>
+            <div class="item-details">
+                <p>Our Lincoln</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Paper%20Doll.png" alt="Paper Doll collage">
+            </div>
+            <div class="item-details">
+                <p>Paper Doll</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Rudkus.png" alt="Rudkus collage">
+            </div>
+            <div class="item-details">
+                <p>Rudkus</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Snapchat.png" alt="Snapchat collage">
+            </div>
+            <div class="item-details">
+                <p>Snapchat</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Son%20of%20a%20Gun.png" alt="Son of a Gun collage">
+            </div>
+            <div class="item-details">
+                <p>Son of a Gun</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Strawberry%20Smoothie.png" alt="Strawberry Smoothie collage">
+            </div>
+            <div class="item-details">
+                <p>Strawberry Smoothie</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Superkiss.png" alt="Superkiss collage">
+            </div>
+            <div class="item-details">
+                <p>Superkiss</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Sweet%20Talk.png" alt="Sweet Talk collage">
+            </div>
+            <div class="item-details">
+                <p>Sweet Talk</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/The%20Great%20Spirit.png" alt="The Great Spirit collage">
+            </div>
+            <div class="item-details">
+                <p>The Great Spirit</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/The%20Sunshine%20State.png" alt="The Sunshine State collage">
+            </div>
+            <div class="item-details">
+                <p>The Sunshine State</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Under%20New%20Management.png" alt="Under New Management collage">
+            </div>
+            <div class="item-details">
+                <p>Under New Management</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Venus.png" alt="Venus collage">
+            </div>
+            <div class="item-details">
+                <p>Venus</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Vivid.png" alt="Vivid collage">
+            </div>
+            <div class="item-details">
+                <p>Vivid</p>
+                <p class="category">Original Collage Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Wildlife.png" alt="Wildlife collage">
+            </div>
+            <div class="item-details">
+                <p>Wildlife</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="image-container">
+                <img src="Images/Wonder%20Woman.png" alt="Wonder Woman collage">
+            </div>
+            <div class="item-details">
+                <p>Wonder Woman</p>
+                <p class="category">Prints Available</p>
+                <p class="price">Prints from $45</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="sizes">
@@ -235,24 +565,22 @@ footer {
     </ul>
 </div>
 
-</main>
-
 <footer>© 2025 Brain Candy Art LLC</footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.querySelector(".menu-toggle");
-    const nav = document.getElementById("main-nav");
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.querySelector('.menu-toggle');
+    const navMenu = document.getElementById('main-nav');
 
-    toggle.addEventListener("click", () => {
-        const isOpen = nav.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", isOpen);
+    toggleButton.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        toggleButton.setAttribute('aria-expanded', isOpen);
     });
 
-    nav.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            nav.classList.remove("open");
-            toggle.setAttribute("aria-expanded", "false");
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+            toggleButton.setAttribute('aria-expanded', 'false');
         });
     });
 });

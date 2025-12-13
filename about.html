@@ -6,10 +6,16 @@
 <title>About — Brain Candy Art</title>
 
 <style>
+/* ---------------------------------
+   DESIGN INTEGRATION FROM INVENTORY PAGE
+--------------------------------- */
+
 /* ---------- VARIABLES ---------- */
 :root {
+    --color-peach: #ffb399; /* Light Peach Accent */
     --color-text: #222;
-    --color-bg-light: #f7ede4;
+    --color-bg-light: #f7ede4; /* CREAM BACKGROUND */
+    --transition-speed: 0.3s;
 }
 
 /* ---------- GLOBAL ---------- */
@@ -17,8 +23,20 @@ body {
     margin: 0;
     font-family: "Times New Roman", serif;
     color: var(--color-text);
-    background: var(--color-bg-light);
     line-height: 1.6;
+    overflow-x: hidden;
+    background: var(--color-bg-light)
+        url('https://www.transparenttextures.com/patterns/diagonal-stripes.png');
+    background-size: 500px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-bg-light);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* ---------------------------------
@@ -28,12 +46,13 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0,0,0,0.08);
     padding: 10px 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 /* Hamburger Button */
@@ -43,6 +62,7 @@ header {
     border: none;
     cursor: pointer;
     padding: 5px 10px;
+    color: var(--color-text);
 }
 
 /* Navigation */
@@ -50,6 +70,7 @@ header {
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    flex-grow: 1;
 }
 
 .main-nav a {
@@ -57,10 +78,18 @@ header {
     text-decoration: none;
     color: var(--color-text);
     font-size: 19px;
+    padding: 15px 0;
+}
+
+.main-nav a:hover {
+    color: var(--color-peach);
 }
 
 /* ---------- MOBILE NAV ---------- */
 @media (max-width: 768px) {
+    header {
+        justify-content: flex-start;
+    }
 
     .menu-toggle {
         display: block;
@@ -78,6 +107,8 @@ header {
         transition: transform 0.4s ease-in-out;
         flex-direction: column;
         padding-top: 60px;
+        margin: 0;
+        flex-grow: 0;
     }
 
     .main-nav.open {
@@ -95,6 +126,10 @@ header {
 @media (min-width: 769px) {
     .menu-toggle {
         display: none;
+    }
+
+    header {
+        justify-content: center;
     }
 }
 
@@ -134,11 +169,12 @@ header {
 .artist-image-container img {
     width: 100%;
     display: block;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 /* ---------- MOBILE CONTENT ---------- */
 @media (max-width: 768px) {
-
     .about-content {
         flex-direction: column;
         text-align: center;
@@ -148,6 +184,14 @@ header {
         max-width: 350px;
         margin: 0 auto;
     }
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 50px;
+    color: #666;
+    margin-top: 40px;
 }
 </style>
 </head>
@@ -181,35 +225,32 @@ header {
             <h2>The Project</h2>
             <p>
                 Brain Candy Art is a surreal collage project blending layered textures,
-                emotional storytelling, and bold yet human color. Each piece reflects
-                an energy shift — from joy and chaos to memory, dream logic, and absurdity.
+                emotional storytelling, and bold yet human color.
             </p>
 
             <h2>The Process</h2>
             <p>
                 The work draws inspiration from vintage print media, everyday objects,
-                and spontaneous fragments of imagery, all assembled to form new,
-                often unexpected, <strong>narratives</strong>.
-                Our process is iterative and focused on capturing a singular, strong feeling.
+                and spontaneous fragments of imagery.
             </p>
 
             <h2>The Artist</h2>
             <p>
                 [Insert a brief bio here about the artist's background and philosophy.]
-                The artist focuses on utilizing discarded materials to give them a second,
-                unexpected life.
             </p>
         </div>
 
         <div class="artist-image-container">
             <img
-                src="https://via.placeholder.com/400x550/96B9E8/FFFFFF?text=Artist+Photo"
+                src="Images/ArtistImage.jpeg"
                 alt="Portrait of the artist">
         </div>
 
     </section>
 
 </main>
+
+<footer>© 2025 Brain Candy Art LLC</footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {

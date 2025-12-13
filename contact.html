@@ -6,10 +6,16 @@
 <title>Contact — Brain Candy Art</title>
 
 <style>
+/* ---------------------------------
+   DESIGN INTEGRATION FROM INVENTORY/ABOUT PAGES
+--------------------------------- */
+
 /* ---------- VARIABLES ---------- */
 :root {
+    --color-peach: #ffb399; /* Light Peach Accent */
     --color-text: #222;
-    --color-bg-light: #f7ede4;
+    --color-bg-light: #f7ede4; /* CREAM BACKGROUND */
+    --transition-speed: 0.3s;
 }
 
 /* ---------- GLOBAL ---------- */
@@ -17,8 +23,20 @@ body {
     margin: 0;
     font-family: "Times New Roman", serif;
     color: var(--color-text);
-    background: var(--color-bg-light);
     line-height: 1.6;
+    overflow-x: hidden;
+    background: var(--color-bg-light)
+        url('https://www.transparenttextures.com/patterns/diagonal-stripes.png');
+    background-size: 500px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-bg-light);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* ---------------------------------
@@ -28,39 +46,51 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding: 10px 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
-/* Hamburger */
+/* Menu Toggle (Hamburger Icon) */
 .menu-toggle {
     font-size: 30px;
     background: none;
     border: none;
     cursor: pointer;
+    color: var(--color-text);
     padding: 5px 10px;
 }
 
-/* Navigation */
+/* Navigation Links Container */
 .main-nav {
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    flex-grow: 1;
 }
 
+/* Individual Links */
 .main-nav a {
+    padding: 15px 0;
     margin: 0 22px;
     text-decoration: none;
     color: var(--color-text);
     font-size: 19px;
 }
 
-/* ---------- MOBILE NAV ---------- */
+.main-nav a:hover {
+    color: var(--color-peach);
+}
+
+/* ---------- MOBILE ONLY ---------- */
 @media (max-width: 768px) {
+    header {
+        justify-content: flex-start;
+    }
 
     .menu-toggle {
         display: block;
@@ -73,11 +103,13 @@ header {
         height: 100%;
         width: 250px;
         background: #fff;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         transform: translateX(100%);
         transition: transform 0.4s ease-in-out;
         flex-direction: column;
         padding-top: 60px;
+        margin: 0;
+        flex-grow: 0;
     }
 
     .main-nav.open {
@@ -85,78 +117,82 @@ header {
     }
 
     .main-nav a {
-        margin: 0;
         padding: 15px 20px;
+        margin: 0;
+        font-size: 18px;
         border-bottom: 1px solid #eee;
     }
 }
 
-/* ---------- DESKTOP ---------- */
+/* ---------- DESKTOP ONLY ---------- */
 @media (min-width: 769px) {
     .menu-toggle {
         display: none;
     }
+
+    header {
+        justify-content: center;
+    }
 }
 
 /* ---------------------------------
-   CONTACT PAGE CONTENT
+   CONTACT CONTENT
 --------------------------------- */
 .container {
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
     padding: 60px 0;
-    text-align: center;
 }
 
-.container h1 {
-    margin-bottom: 15px;
-}
-
-.container p {
-    margin-bottom: 40px;
-}
-
-/* FORM */
 form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    text-align: left;
-}
-
-label {
-    font-size: 0.95em;
 }
 
 input,
 textarea {
     font-family: inherit;
-    padding: 10px;
-    font-size: 1em;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 0;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 textarea {
-    min-height: 140px;
     resize: vertical;
 }
 
-button {
-    align-self: center;
-    padding: 10px 30px;
-    font-size: 1em;
-    cursor: pointer;
-    border: 1px solid #222;
-    background: transparent;
+label {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: -10px;
 }
 
-/* ---------- MOBILE FORM ---------- */
-@media (max-width: 480px) {
-    .container {
-        padding: 40px 0;
-    }
+button {
+    width: fit-content;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 1.1em;
+    border: 2px solid var(--color-peach);
+    background-color: var(--color-peach);
+    color: white;
+    transition: background-color var(--transition-speed),
+                color var(--transition-speed);
+}
+
+button:hover {
+    background-color: white;
+    color: var(--color-peach);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 50px;
+    color: #666;
+    margin-top: 40px;
 }
 </style>
 </head>
@@ -164,11 +200,7 @@ button {
 <body>
 
 <header>
-    <button
-        type="button"
-        class="menu-toggle"
-        aria-label="Toggle menu"
-        aria-expanded="false">
+    <button class="menu-toggle" type="button" aria-label="Open Menu">
         &#9776;
     </button>
 
@@ -180,49 +212,53 @@ button {
     </nav>
 </header>
 
-<main class="container">
-
+<div class="container">
     <h1>Contact Brain Candy Art</h1>
-
     <p>
         For inquiries regarding purchases, commissions, or exhibitions,
         please use the form below.
     </p>
+    <section>
+    <h2>Magazine Donations</h2>
+    <p>
+        Brain Candy Art accepts donations of magazines and printed materials that would
+        otherwise be discarded. These materials are used in collage work and ongoing
+        experimental projects.
+    </p>
+    <p>
+        If you have magazines you’d like to donate, please use the contact form below
+        and include a brief description of what you have.
+    </p>
+    </section>
 
-    <!-- Netlify Form -->
-    <form
-        name="contact"
-        method="POST"
-        data-netlify="true">
-
+    <form name="contact" method="POST" data-netlify="true">
         <label for="name">Name</label>
-        <input id="name" name="name" type="text" required>
+        <input type="text" id="name" name="name" required>
 
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" required>
+        <input type="email" id="email" name="email" required>
 
         <label for="message">Message</label>
-        <textarea id="message" name="message" required></textarea>
+        <textarea id="message" name="message" required rows="6"></textarea>
 
         <button type="submit">Send Message</button>
     </form>
+</div>
 
-</main>
+<footer>© 2025 Brain Candy Art LLC</footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.querySelector(".menu-toggle");
-    const nav = document.getElementById("main-nav");
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.querySelector('.menu-toggle');
+    const navMenu = document.getElementById('main-nav');
 
-    toggle.addEventListener("click", () => {
-        const isOpen = nav.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", isOpen);
+    toggleButton.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
     });
 
-    nav.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            nav.classList.remove("open");
-            toggle.setAttribute("aria-expanded", "false");
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
         });
     });
 });
