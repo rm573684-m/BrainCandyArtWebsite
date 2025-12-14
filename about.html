@@ -113,6 +113,7 @@ header {
 
     .menu-toggle {
         display: block;
+        order: -1;
     }
 
     .main-nav {
@@ -127,8 +128,8 @@ header {
         transition: transform 0.4s ease-in-out;
         flex-direction: column;
         padding-top: 60px;
-        margin: 0;
-        flex-grow: 0;
+        justify-content: flex-start;
+        overflow-y: auto;
     }
 
     .main-nav.open {

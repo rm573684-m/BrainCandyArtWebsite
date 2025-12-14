@@ -107,6 +107,7 @@ header {
 
     .menu-toggle {
         display: block;
+        order: -1;
     }
 
     .main-nav {
@@ -121,6 +122,8 @@ header {
         transition: transform 0.4s ease-in-out;
         flex-direction: column;
         padding-top: 60px;
+        justify-content: flex-start;
+        overflow-y: auto;
     }
 
     .main-nav.open {
@@ -195,7 +198,7 @@ header {
 /* GALLERY */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     margin-bottom: 60px;
 }
