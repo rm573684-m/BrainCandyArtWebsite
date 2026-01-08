@@ -309,6 +309,86 @@ header {
     font-weight: bold; 
 }
 
+.size-guide-container {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.size-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.size-card {
+    background: white;
+    padding: 40px 30px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.size-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+/* Highlight the Medium Size */
+.size-card.popular {
+    border: 2px solid var(--color-peach);
+}
+
+.badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-peach);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.size-card h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.dimensions {
+    font-weight: 600;
+    color: var(--color-peach);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.description {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.price {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+}
+
 /* FOOTER */
 footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
 
@@ -775,16 +855,39 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
     </div>
 </div>
 
-<div class="sizes">
-    <h2>Available Print Formats</h2>
-    <ul class="size-list">
-        <li>Notecards</li>
-        <li>Medium — 11×14 in</li>
-        <li>Large — 16×20 in</li>
-        <li>Giclée on Canvas</li>
-        <li>Originals — Price Upon Request</li>
-    </ul>
-</div>
+<section class="size-guide-container">
+    <h2 class="section-title">Available Print Sizes</h2>
+    <div class="size-grid">
+        <div class="size-card">
+            <h3>Notecards</h3>
+            <p class="dimensions">8" x 10"</p>
+            <p class="description">Perfect for desk frames and gallery walls.</p>
+            <span class="price">From $12</span>
+        </div>
+
+        <div class="size-card popular">
+            <div class="badge">Collector's Choice</div>
+            <h3>Medium</h3>
+            <p class="dimensions">11" x 14"</p>
+            <p class="description">The ideal size to capture the intricate collage details.</p>
+            <span class="price">From $50</span>
+        </div>
+
+        <div class="size-card">
+            <h3>Large</h3>
+            <p class="dimensions">16" x 20"</p>
+            <p class="description">A statement piece for living rooms and offices.</p>
+            <span class="price">From $75</span>
+        </div>
+
+        <div class="size-card">
+            <h3>Giclee</h3>
+            <p class="dimensions">Streched canvas"</p>
+            <p class="description">A statement piece for living rooms and offices.</p>
+            <span class="price">From $850</span>
+        </div>
+    </div>
+</section>
 
 <footer>© 2026 Brain Candy Art</footer>
 
