@@ -238,6 +238,49 @@ header {
     }
 }
 
+/* UPDATED MOBILE CONTENT STYLES */
+@media (max-width: 768px) {
+    .main-container h1 {
+        font-size: 38px; /* Slightly smaller for mobile screens */
+        margin-bottom: 30px;
+    }
+
+    .about-content {
+        flex-direction: column; /* Stacks the image and text */
+        display: flex;
+    }
+
+    /* Move the image to the top on mobile for engagement */
+    .artist-image-container {
+        order: -1; 
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 30px auto;
+    }
+
+    .text-column h2 {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .text-column p {
+        font-size: 1rem;
+        text-align: left; /* Keep text left-aligned for readability */
+        padding: 0 10px;
+    }
+
+    /* Add a bit of "breathing room" between sections */
+    .text-column h2:not(:first-child) {
+        margin-top: 50px;
+    }
+}
+
+/* Add this to make the bold text pop in the bio */
+strong {
+    color: var(--color-peach);
+    font-weight: 600;
+}
+
 /* FOOTER */
 footer {
     text-align: center;
@@ -283,51 +326,35 @@ footer {
 
             <h2>The Process</h2>
             <p>
-                The work draws inspiration from vintage print media, everyday objects, 
-                and spontaneous fragments of imagery, all assembled to form new, 
-                often unexpected, <strong>narratives</strong>. 
-                Our process is iterative and focused on capturing a singular, strong feeling.
+                Our work is focused on capturing a singular, strong feeling. 
+                Using <strong>recycled magazines and varnish</strong> on stretched canvas, 
+                each meticulous piece takes between <strong>350–400 hours</strong> of work to complete.
             </p>
+
+            <div class="artist-image-container">
+                <img src="Images/ArtistImage.jpeg"
+                alt="Portrait of the artist">
+            </div>
 
             <h2>The Artist</h2>
             <p>
-                Maura Lucchese grew up in Cocoa Beach, and was mentored by her father, 
-                a senior design engineer for the Space Program. As a scientist, he encouraged her 
-                to push herself to excellence in art in order to keep her active mind busy. 
-                
-                In school, she was taught by RL Lewis, a famous Florida Highwayman painter.  
-                Before starting a family, she created Maura’s Magic Marble Candles which achieved a cult 
-                following with the rock stars of the ‘90s Grunge era in Seattle and were sold out 
-                regularly in galleries. 
-
-                Later, several mind-altering tragedies which garnered public interest, brought Maura to 
-                a precipice and her only options were to give up or use the setbacks as a springboard 
-                to inspire others. She chose the latter. 
-
-                In the midst of the public eye, she recovered from a brain and spinal cord injury. 
-                She dealt with her grief by making meticulous collages, which take between 350-400 hours 
-                of work. These are made from only recycled magazines and varnish on stretched canvas or 
-                occasionally wood. Her unique, emotional, and very personal portraits have been noticed by 
-                art lovers worldwide.  
-                Her philosophy is to use the full complement of human emotion as an agent for positive change, 
-                negating labels meant to control vulnerable individuals or groups, to expose the abuse of people
-                and our planet, and to effectively educate, entertain, and edify a culture where pro-social 
-                behavior is the norm, not the exception.
-
+                Maura Lucchese was raised in Cocoa Beach and mentored by her father—a senior design engineer for the <strong>Space Program</strong>—Maura Lucchese was pushed to find excellence in art to match her active mind. 
+                She was formally trained by <strong>RL Lewis</strong>, a legendary Florida Highwayman, 
+                before carving her own path in the 90s Seattle Grunge scene.
             </p>
-        </div>
-
-        <div class="artist-image-container">
-            <img
-                src="Images/ArtistImage.jpeg"
-                alt="Portrait of the artist">
+            <p>
+                Following a life-altering brain and spinal cord injury, Maura turned to art as a vessel for recovery. 
+                Her unique, emotional portraits have been noticed by art lovers worldwide. 
+                Her philosophy is to use the full complement of human emotion as an agent for <strong>positive change</strong>, 
+                using art to educate, entertain, and edify our culture.
+            </p>
         </div>
 
     </section>
 
 </main>
 
-<footer>© 2025 Brain Candy Art LLC</footer>
+<footer>© 2026 Brain Candy Art</footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
