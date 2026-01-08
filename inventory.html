@@ -309,84 +309,81 @@ header {
     font-weight: bold; 
 }
 
-.size-guide-container {
-    padding: 60px 20px;
-    max-width: 1100px;
-    margin: 0 auto;
+/*PRINTS SIZE SECTION*/
+.mobile-size-guide {
+    padding: 40px 15px;
+    background-color: #fff; /* White background makes the text pop on mobile */
+    border-radius: 20px 20px 0 0; /* Slight curve at the top for a modern look */
+    margin-top: -20px; /* Overlaps slightly with the section above */
+}
+
+.size-title {
+    font-family: var(--font-heading);
     text-align: center;
-}
-
-.section-title {
-    font-family: var(--font-heading);
-    font-size: 36px;
-    margin-bottom: 40px;
-}
-
-.size-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.size-card {
-    background: white;
-    padding: 40px 30px;
-    border: 1px solid #eee;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.size-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-}
-
-/* Highlight the Medium Size */
-.size-card.popular {
-    border: 2px solid var(--color-peach);
-}
-
-.badge {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-peach);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.size-card h3 {
-    font-family: var(--font-heading);
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.dimensions {
-    font-weight: 600;
-    color: var(--color-peach);
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-
-.description {
-    font-size: 14px;
-    color: #777;
+    font-size: 28px;
     margin-bottom: 25px;
 }
 
-.price {
-    font-family: var(--font-heading);
-    font-size: 22px;
+.size-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.size-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: var(--color-bg-light);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px;
+}
+
+/* Make the popular one stand out even on a small screen */
+.size-item.popular {
+    border: 2px solid var(--color-peach);
+    position: relative;
+    background: #fff;
+}
+
+.popular-tag {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--color-peach);
+    color: white;
+    font-size: 10px;
     font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
+
+.size-info h3 {
+    font-family: var(--font-heading);
+    margin: 0;
+    font-size: 18px;
+}
+
+.dimensions {
+    font-size: 14px;
+    color: #888;
+}
+
+.size-price {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.size-note {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 20px;
+    font-style: italic;
 }
 
 /* FOOTER */
@@ -855,39 +852,48 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
     </div>
 </div>
 
-<section class="size-guide-container">
-    <h2 class="section-title">Available Print Sizes</h2>
-    <div class="size-grid">
-        <div class="size-card">
-            <h3>Notecards</h3>
-            <p class="dimensions">8" x 10"</p>
-            <p class="description">Perfect for desk frames and gallery walls.</p>
-            <span class="price">From $12</span>
+<section class="mobile-size-guide">
+    <h2 class="size-title">Available Print Sizes & Pricing</h2>
+    
+    <div class="size-list">
+        <div class="size-item">
+            <div class="size-info">
+                <h3>Notecards</h3>
+                <span class="dimensions">8 x 10 in</span>
+            </div>
+            <div class="size-price">$45</div>
         </div>
 
-        <div class="size-card popular">
-            <div class="badge">Collector's Choice</div>
-            <h3>Medium</h3>
-            <p class="dimensions">11" x 14"</p>
-            <p class="description">The ideal size to capture the intricate collage details.</p>
-            <span class="price">From $50</span>
+        <div class="size-item">
+            <div class="size-info">
+                <h3>Medium Print</h3>
+                <span class="dimensions">11 x 14 in</span>
+            </div>
+            <div class="size-price">$50</div>
         </div>
 
-        <div class="size-card">
-            <h3>Large</h3>
-            <p class="dimensions">16" x 20"</p>
-            <p class="description">A statement piece for living rooms and offices.</p>
-            <span class="price">From $75</span>
+        <div class="size-item popular">
+            <div class="popular-tag">Most Popular</div>
+            <div class="size-info">
+                <h3>Large Prints</h3>
+                <span class="dimensions">16 x 20 in</span>
+            </div>
+            <div class="size-price">$75</div>
         </div>
 
-        <div class="size-card">
-            <h3>Giclee</h3>
-            <p class="dimensions">Streched canvas"</p>
-            <p class="description">A statement piece for living rooms and offices.</p>
-            <span class="price">From $850</span>
+        <div class="size-item">
+            <div class="size-info">
+                <h3>Giclee on Streched Canvas</h3>
+                <span class="dimensions">Size upon request</span>
+            </div>
+            <div class="size-price">From $500-$900</div>
         </div>
     </div>
+
+    
+    <p class="size-note">*All prints are high-quality archival paper with a matte finish.</p>
 </section>
+
 
 <footer>© 2026 Brain Candy Art</footer>
 

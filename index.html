@@ -138,10 +138,18 @@ header {
     }
 
     .main-nav a {
-        font-family: var(--font-heading);
-        font-size: 32px; /* Large, easy-to-tap links */
-        margin: 15px 0;
-        border: none !important;
+    font-family: 'Playfair Display', serif; /* Gallery-style font */
+    font-weight: 600;
+    font-size: 28px; /* Large for mobile readability */
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: var(--color-text);
+    padding: 15px 0;
+    transition: color 0.3s ease;
+    }
+
+    .main-nav a:hover {
+    color: var(--color-peach);
     }
 
     .menu-toggle {
