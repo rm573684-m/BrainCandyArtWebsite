@@ -4,39 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home — Brain Candy Art</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-/* --- VARIABLES & GLOBAL RESET --- */
+/* --- VARIABLES --- */
 :root {
     --color-peach: #ffb399;
     --color-text: #222;
     --color-bg-light: #f7ede4;
-    --font-serif: "Playfair Display", serif;
-    --font-body: 'Montserrat', sans-serif;
-    --transition-speed: 0.3s;
+    --font-serif: "Times New Roman", Times, serif;
+    --frame-color: #1a1a1a; /* Dark wood frame color */
 }
 
-/* GLOBAL */
+/* --- GLOBAL STYLES --- */
 body {
     margin: 0;
-    font-family: var(--font-body);
+    font-family: var(--font-serif);
     color: var(--color-text);
     line-height: 1.8;
-    overflow-x: hidden;
-    background: var(--color-bg-light)
-        url("https://www.transparenttextures.com/patterns/diagonal-stripes.png");
+    background: var(--color-bg-light) url("https://www.transparenttextures.com/patterns/diagonal-stripes.png");
     background-size: 500px;
 }
 
-
-h1, h2, h3 {
-    font-family: var(--font-heading); /* Elegant gallery headings */
-    font-weight: 700;
+h1, h2, h3, a {
+    font-family: var(--font-serif);
 }
 
-/* ---------------------------------
-   HEADER & NAVIGATION
---------------------------------- */
+/* --- THE MUSEUM FRAME EFFECT --- */
+/* This creates the 'matting' and 'frame' look */
+.art-frame {
+    background-color: #fff; /* The Mat */
+    padding: 15px;
+    border: 1px solid #d1d1d1; /* Inner edge of frame */
+    box-shadow: 
+        inset 0 0 5px rgba(0,0,0,0.1),
+        0 10px 30px rgba(0,0,0,0.15); /* External Shadow */
+    outline: 8px solid var(--frame-color); /* The outer wooden frame */
+    outline-offset: -1px;
+    margin: 20px auto;
+    max-width: 100%;
+}
+
+/* --- HEADER & NAVIGATION --- */
 header {
     position: sticky;
     top: 0;
@@ -44,12 +51,11 @@ header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 10px 20px;
+    padding: 15px 20px;
     display: flex;
     align-items: center;
 }
 
-/* Hamburger Button */
 .menu-toggle {
     display: none;
     font-size: 30px;
@@ -57,36 +63,11 @@ header {
     border: none;
     cursor: pointer;
     color: var(--color-text);
-    padding: 5px 10px;
 }
 
-
-/* Navigation Links Container */
 .main-nav {
     display: flex;
     justify-content: center;
-    margin: 0 auto;
-    flex-grow: 1;
-}
-
-/* Individual Links */
-.main-nav a {
-    padding: 15px 0;
-    margin: 0 22px;
-    text-decoration: none;
-    color: var(--color-text);
-    font-size: 19px;
-}
-
-.main-nav a:hover {
-    color: var(--color-peach);
-}
-
-/* Navigation */
-.main-nav {
-    display: flex;
-    justify-content: center;
-    width: auto;
     margin: 0 auto;
 }
 
@@ -95,260 +76,130 @@ header {
     text-decoration: none;
     color: #333;
     font-size: 19px;
-    padding: 15px 0;
-    transition: color var(--transition-speed);
+    transition: color 0.3s;
 }
 
 .main-nav a:hover {
     color: var(--color-peach);
 }
 
-/* ---------------------------------
-   MOBILE NAVIGATION
---------------------------------- */
-@media (max-width: 768px) {
-
-    header {
-        justify-content: flex-start;
-    }
-
-    .menu-toggle {
-        display: block;
-        order: -1;
-    }
-
-    .main-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.98);
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Center links vertically */
-        align-items: center;
-        transform: translateY(-100%); /* Slides down from top instead of side */
-        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-        z-index: 999;
-    }
-
-    .main-nav.open {
-        transform: translateY(0);
-    }
-
-    .main-nav a {
-    font-family: 'Playfair Display', serif; /* Gallery-style font */
-    font-weight: 600;
-    font-size: 28px; /* Large for mobile readability */
-    letter-spacing: 1px;
-    text-decoration: none;
-    color: var(--color-text);
-    padding: 15px 0;
-    transition: color 0.3s ease;
-    }
-
-    .main-nav a:hover {
-    color: var(--color-peach);
-    }
-
-    .menu-toggle {
-        position: relative;
-        z-index: 1000;
-    }
-}
-
-
-/* ---------- CALL TO ACTION BUTTON ---------- */
-.cta-container {
-    text-align: center;
-    margin-top: 50px;
-    padding-bottom: 40px;
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: var(--color-peach);
-    color: white;
-    padding: 18px 35px;
-    text-decoration: none;
-    font-family: var(--font-body);
-    font-weight: 600;
-    letter-spacing: 1px;
-    border-radius: 50px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 179, 153, 0.3);
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 179, 153, 0.5);
-    color: white;
-}
-
-/* ---------------------------------
-   LAYOUT
---------------------------------- */
+/* --- HERO SECTION --- */
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding-bottom: 80px;
 }
 
-/* HERO */
 .hero-section {
     display: flex;
-    gap: 50px;
+    gap: 60px;
     padding: 80px 0;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 60px;
+    align-items: center;
 }
 
-.hero-image-large {
-    flex: 1;
+.hero-image-large { flex: 1.2; }
+.hero-image-large img { width: 100%; display: block; }
+
+.hero-text { flex: 1; }
+.hero-text h1 { font-size: 48px; font-weight: normal; margin-bottom: 20px; }
+.subtitle { color: var(--color-peach); text-transform: uppercase; letter-spacing: 3px; font-size: 14px; }
+
+/* --- RECENT PIECES (The New Frames) --- */
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
 }
 
-.hero-image-large img {
-    width: 100%;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    margin-bottom: 80px;
 }
 
-.hero-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.gallery-item { text-align: center; }
+.gallery-item img { width: 100%; display: block; }
+
+.gallery-item-title { font-size: 20px; margin: 25px 0 5px; }
+.gallery-item-artist { font-style: italic; color: #777; font-size: 14px; }
+
+/* --- FIND US SECTION (Elegant) --- */
+.find-us-section {
+    padding: 80px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-.hero-text h1 {
-    font-size: 50px;
-    margin: 0 0 10px;
-    line-height: 1.1;
+.find-us-section h2 {
+    font-size: 28px;
+    font-weight: normal;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
 }
 
-.subtitle {
-    font-size: 1.1em;
-    color: var(--color-peach);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.find-us-section h2::after {
+    content: "";
+    width: 50px;
+    height: 1px;
+    background: var(--color-peach);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.location-block {
     margin-bottom: 30px;
 }
 
-/* SECTION TITLE */
-.section-title {
-    font-size: 32px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--color-peach);
-    padding-bottom: 10px;
-}
-
-/* GALLERY */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    margin-bottom: 60px;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    padding: 15px; /* Creates internal space for the 'frame' effect */
-    background-color: white; /* Frame/background color */
-    border: 1px solid #ddd; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Subtle Lift */
-    
-    margin-bottom: 10px;
-    box-sizing: border-box
-}
-
-.gallery-item-title {
-    font-size: 1.4em;
-    margin: 5px 0 0;
-}
-
-.gallery-item-artist {
-    font-style: italic;
-    font-size: 0.9em;
-    color: #777;
-}
-
-/* AUXILIARY */
-.auxiliary-section {
-    padding-top: 40px;
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: center;
-}
-
-.atelier-block {
-    text-align: center;
-}
-
-.atelier-block h2 {
-    font-size: 30px;
-    border-bottom: 2px solid var(--color-peach);
-    padding-bottom: 10px;
-}
-
-.event-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.event-links a {
-    text-decoration: none;
+.location-name {
+    display: block;
+    font-size: 22px;
     color: var(--color-text);
-    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 5px;
 }
 
-.event-links a:last-child {
-    font-weight: normal;
-    font-size: 0.9em;
-    color: #777;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 60px;
+.location-address {
+    font-style: italic;
     color: #666;
+    font-size: 16px;
+    text-decoration: none;
 }
 
-/* MOBILE CONTENT */
+/* --- MOBILE STYLES --- */
 @media (max-width: 768px) {
-
-    .hero-section {
+    .menu-toggle { display: block; }
+    
+    .main-nav {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100vh;
+        background: white;
         flex-direction: column;
-        text-align: center;
-        padding: 40px 0;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease;
     }
+    
+    .main-nav.open { transform: translateY(0); }
+    .main-nav a { font-size: 28px; margin: 15px 0; }
 
-    .hero-text h1 {
-        font-size: 8vw;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
+    .hero-section { flex-direction: column; text-align: center; padding: 40px 0; }
+    .gallery-grid { grid-template-columns: 1fr; gap: 60px; }
+    
+    .art-frame { outline: 5px solid var(--frame-color); padding: 10px; } /* Slimmer frame for mobile */
 }
+
+footer { text-align: center; padding: 40px; font-size: 14px; color: #999; }
 </style>
 </head>
 
 <body>
 
 <header>
-    <button type="button"
-        class="menu-toggle"
-        aria-label="Toggle menu"
-        aria-expanded="false">
-        &#9776;
-    </button>
-
+    <button type="button" class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav class="main-nav" id="main-nav">
         <a href="index.html">Home</a>
         <a href="inventory.html">Inventory</a>
@@ -361,8 +212,9 @@ footer {
 
     <section class="hero-section">
         <div class="hero-image-large">
-            <img src="Images/Kerplewy.png"
-                 alt="Featured surreal collage artwork">
+            <div class="art-frame">
+                <img src="Images/Kerplewy.png" alt="Featured surreal collage artwork">
+            </div>
         </div>
 
         <div class="hero-text">
@@ -375,37 +227,45 @@ footer {
         </div>
     </section>
 
-    <div class="section-title">Recent Pieces</div>
+    <h2 class="section-title">Recent Pieces</h2>
 
     <section class="gallery-grid">
         <div class="gallery-item">
-            <img src="Images/Another Brother.png" alt="Another Brother">
+            <div class="art-frame">
+                <img src="Images/Another Brother.png" alt="Another Brother">
+            </div>
             <p class="gallery-item-title">Another Brother</p>
             <p class="gallery-item-artist">Original Collage — 2025</p>
         </div>
 
         <div class="gallery-item">
-            <img src="Images/Tempo.png" alt="Tempo">
+            <div class="art-frame">
+                <img src="Images/Tempo.png" alt="Tempo">
+            </div>
             <p class="gallery-item-title">Tempo</p>
             <p class="gallery-item-artist">Original Collage — 2025</p>
         </div>
 
         <div class="gallery-item">
-            <img src="Images/Riverdale.png" alt="Riverdale">
+            <div class="art-frame">
+                <img src="Images/Riverdale.png" alt="Riverdale">
+            </div>
             <p class="gallery-item-title">Riverdale</p>
             <p class="gallery-item-artist">Original Collage — 2025</p>
         </div>
     </section>
 
-    <section class="auxiliary-section">
-        <div class="atelier-block">
-            <h2>Find us @</h2>
-            <div class="event-links">
-                <a href="#">Gallery West</a>
-                <a href="#">447 3rd St, Macon, GA 31201</a>     
-                <a href="#">Society Garden</a>
-                <a href="#">2389 Ingleside Ave, Macon, GA 31201</a>
-            </div>
+    <section class="find-us-section">
+        <h2>Find Us At</h2>
+        
+        <div class="location-block">
+            <a href="#" class="location-name">Gallery West</a>
+            <a href="#" class="location-address">447 3rd St, Macon, GA 31201</a>
+        </div>
+
+        <div class="location-block">
+            <a href="#" class="location-name">Society Garden</a>
+            <a href="#" class="location-address">2389 Ingleside Ave, Macon, GA 31201</a>
         </div>
     </section>
 
@@ -414,22 +274,10 @@ footer {
 <footer>© 2026 Brain Candy Art</footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.querySelector(".menu-toggle");
     const nav = document.getElementById("main-nav");
 
-    toggle.addEventListener("click", () => {
-        const isOpen = nav.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", isOpen);
-    });
-
-    nav.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            nav.classList.remove("open");
-            toggle.setAttribute("aria-expanded", "false");
-        });
-    });
-});
+    toggle.onclick = () => nav.classList.toggle("open");
 </script>
 
 </body>
