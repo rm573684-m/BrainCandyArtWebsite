@@ -11,7 +11,6 @@
     --color-text: #222;
     --color-bg-light: #f7ede4;
     --font-serif: "Times New Roman", Times, serif;
-    --frame-color: #1a1a1a; /* Dark wood frame color */
 }
 
 /* --- GLOBAL STYLES --- */
@@ -19,28 +18,26 @@ body {
     margin: 0;
     font-family: var(--font-serif);
     color: var(--color-text);
-    line-height: 1.8;
+    line-height: 1.6;
     background: var(--color-bg-light) url("https://www.transparenttextures.com/patterns/diagonal-stripes.png");
     background-size: 500px;
 }
 
-h1, h2, h3, a {
-    font-family: var(--font-serif);
+/* --- THE CLEAN GALLERY FRAME --- */
+/* Matches your inventory page style */
+.art-matte {
+    background-color: white;
+    padding: 15px; /* The white 'Matte' */
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    display: block;
+    margin: 0 auto;
 }
 
-/* --- THE MUSEUM FRAME EFFECT --- */
-/* This creates the 'matting' and 'frame' look */
-.art-frame {
-    background-color: #fff; /* The Mat */
-    padding: 15px;
-    border: 1px solid #d1d1d1; /* Inner edge of frame */
-    box-shadow: 
-        inset 0 0 5px rgba(0,0,0,0.1),
-        0 10px 30px rgba(0,0,0,0.15); /* External Shadow */
-    outline: 8px solid var(--frame-color); /* The outer wooden frame */
-    outline-offset: -1px;
-    margin: 20px auto;
-    max-width: 100%;
+.art-matte img {
+    width: 100%;
+    display: block;
+    height: auto;
 }
 
 /* --- HEADER & NAVIGATION --- */
@@ -48,21 +45,22 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding: 15px 20px;
     display: flex;
     align-items: center;
 }
 
 .menu-toggle {
-    display: none;
-    font-size: 30px;
+    font-size: 28px;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--color-text);
+    padding: 0;
+    margin-right: 20px;
 }
 
 .main-nav {
@@ -72,10 +70,10 @@ header {
 }
 
 .main-nav a {
-    margin: 0 22px;
+    margin: 0 15px;
     text-decoration: none;
-    color: #333;
-    font-size: 19px;
+    color: #444;
+    font-size: 18px;
     transition: color 0.3s;
 }
 
@@ -83,123 +81,140 @@ header {
     color: var(--color-peach);
 }
 
-/* --- HERO SECTION --- */
+/* --- LAYOUT --- */
 .container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 20px 0 80px;
 }
 
+/* HERO SECTION */
 .hero-section {
     display: flex;
-    gap: 60px;
-    padding: 80px 0;
-    align-items: center;
+    flex-direction: column; /* Mobile Default */
+    gap: 30px;
+    padding: 40px 0;
+    text-align: center;
 }
 
-.hero-image-large { flex: 1.2; }
-.hero-image-large img { width: 100%; display: block; }
+.hero-text h1 {
+    font-size: 36px;
+    font-weight: normal;
+    margin: 10px 0;
+    line-height: 1.2;
+}
 
-.hero-text { flex: 1; }
-.hero-text h1 { font-size: 48px; font-weight: normal; margin-bottom: 20px; }
-.subtitle { color: var(--color-peach); text-transform: uppercase; letter-spacing: 3px; font-size: 14px; }
+.subtitle {
+    color: var(--color-peach);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
 
-/* --- RECENT PIECES (The New Frames) --- */
+/* RECENT PIECES */
 .section-title {
     text-align: center;
-    font-size: 32px;
-    margin-bottom: 50px;
-    letter-spacing: 1px;
+    font-size: 28px;
+    margin: 60px 0 40px;
+    font-weight: normal;
+    position: relative;
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-    margin-bottom: 80px;
+.gallery-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Space between the framed pieces */
 }
 
-.gallery-item { text-align: center; }
-.gallery-item img { width: 100%; display: block; }
-
-.gallery-item-title { font-size: 20px; margin: 25px 0 5px; }
-.gallery-item-artist { font-style: italic; color: #777; font-size: 14px; }
-
-/* --- FIND US SECTION (Elegant) --- */
-.find-us-section {
-    padding: 80px 0;
-    border-top: 1px solid rgba(0,0,0,0.1);
+.gallery-item {
     text-align: center;
 }
 
-.find-us-section h2 {
-    font-size: 28px;
+.gallery-item-title {
+    font-size: 22px;
+    margin: 20px 0 5px;
+}
+
+.gallery-item-artist {
+    font-style: italic;
+    color: #888;
+    font-size: 15px;
+}
+
+/* FIND US SECTION */
+.find-us {
+    margin-top: 80px;
+    padding: 60px 20px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.find-us h2 {
+    font-size: 26px;
     font-weight: normal;
-    margin-bottom: 40px;
-    position: relative;
-    display: inline-block;
-}
-
-.find-us-section h2::after {
-    content: "";
-    width: 50px;
-    height: 1px;
-    background: var(--color-peach);
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.location-block {
     margin-bottom: 30px;
+}
+
+.location {
+    margin-bottom: 25px;
 }
 
 .location-name {
     display: block;
-    font-size: 22px;
-    color: var(--color-text);
+    font-size: 20px;
     text-decoration: none;
-    margin-bottom: 5px;
+    color: var(--color-text);
+    margin-bottom: 4px;
 }
 
-.location-address {
+.location-addr {
     font-style: italic;
     color: #666;
-    font-size: 16px;
+    font-size: 15px;
     text-decoration: none;
 }
 
-/* --- MOBILE STYLES --- */
+/* --- MOBILE SPECIFIC OVERRIDES --- */
 @media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    
     .main-nav {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100vh;
         background: white;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         transform: translateY(-100%);
-        transition: transform 0.4s ease;
+        transition: transform 0.5s ease-in-out;
     }
-    
-    .main-nav.open { transform: translateY(0); }
-    .main-nav a { font-size: 28px; margin: 15px 0; }
 
-    .hero-section { flex-direction: column; text-align: center; padding: 40px 0; }
-    .gallery-grid { grid-template-columns: 1fr; gap: 60px; }
-    
-    .art-frame { outline: 5px solid var(--frame-color); padding: 10px; } /* Slimmer frame for mobile */
+    .main-nav.open { transform: translateY(0); }
+    .main-nav a { font-size: 30px; margin: 20px 0; }
+
+    .hero-text h1 { font-size: 32px; }
 }
 
-footer { text-align: center; padding: 40px; font-size: 14px; color: #999; }
+/* DESKTOP TWEAKS */
+@media (min-width: 769px) {
+    .hero-section { flex-direction: row; text-align: left; align-items: center; padding: 80px 0; }
+    .menu-toggle { display: none; }
+    .gallery-stack { 
+        display: grid; 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 30px; 
+    }
+}
+
+footer { text-align: center; padding: 40px; font-size: 14px; color: #aaa; }
 </style>
 </head>
 
 <body>
 
 <header>
-    <button type="button" class="menu-toggle" aria-label="Toggle menu">☰</button>
+    <button type="button" class="menu-toggle" id="menu-btn">☰</button>
     <nav class="main-nav" id="main-nav">
         <a href="index.html">Home</a>
         <a href="inventory.html">Inventory</a>
@@ -211,27 +226,24 @@ footer { text-align: center; padding: 40px; font-size: 14px; color: #999; }
 <main class="container">
 
     <section class="hero-section">
-        <div class="hero-image-large">
-            <div class="art-frame">
-                <img src="Images/Kerplewy.png" alt="Featured surreal collage artwork">
+        <div class="hero-image">
+            <div class="art-matte">
+                <img src="Images/Kerplewy.png" alt="Featured Collage">
             </div>
         </div>
 
         <div class="hero-text">
             <p class="subtitle">Brain Candy Art</p>
             <h1>Surreal Collage & Vibrant Expression</h1>
-            <p>
-                Each piece is a journey into the unexpected, combining classic
-                imagery with modern, visceral energy.
-            </p>
+            <p>A journey into the unexpected, combining classic imagery with modern energy.</p>
         </div>
     </section>
 
     <h2 class="section-title">Recent Pieces</h2>
 
-    <section class="gallery-grid">
+    <section class="gallery-stack">
         <div class="gallery-item">
-            <div class="art-frame">
+            <div class="art-matte">
                 <img src="Images/Another Brother.png" alt="Another Brother">
             </div>
             <p class="gallery-item-title">Another Brother</p>
@@ -239,7 +251,7 @@ footer { text-align: center; padding: 40px; font-size: 14px; color: #999; }
         </div>
 
         <div class="gallery-item">
-            <div class="art-frame">
+            <div class="art-matte">
                 <img src="Images/Tempo.png" alt="Tempo">
             </div>
             <p class="gallery-item-title">Tempo</p>
@@ -247,7 +259,7 @@ footer { text-align: center; padding: 40px; font-size: 14px; color: #999; }
         </div>
 
         <div class="gallery-item">
-            <div class="art-frame">
+            <div class="art-matte">
                 <img src="Images/Riverdale.png" alt="Riverdale">
             </div>
             <p class="gallery-item-title">Riverdale</p>
@@ -255,17 +267,15 @@ footer { text-align: center; padding: 40px; font-size: 14px; color: #999; }
         </div>
     </section>
 
-    <section class="find-us-section">
+    <section class="find-us">
         <h2>Find Us At</h2>
-        
-        <div class="location-block">
+        <div class="location">
             <a href="#" class="location-name">Gallery West</a>
-            <a href="#" class="location-address">447 3rd St, Macon, GA 31201</a>
+            <a href="#" class="location-addr">447 3rd St, Macon, GA 31201</a>
         </div>
-
-        <div class="location-block">
+        <div class="location">
             <a href="#" class="location-name">Society Garden</a>
-            <a href="#" class="location-address">2389 Ingleside Ave, Macon, GA 31201</a>
+            <a href="#" class="location-addr">2389 Ingleside Ave, Macon, GA 31201</a>
         </div>
     </section>
 
@@ -274,10 +284,11 @@ footer { text-align: center; padding: 40px; font-size: 14px; color: #999; }
 <footer>© 2026 Brain Candy Art</footer>
 
 <script>
-    const toggle = document.querySelector(".menu-toggle");
+    const btn = document.getElementById("menu-btn");
     const nav = document.getElementById("main-nav");
-
-    toggle.onclick = () => nav.classList.toggle("open");
+    btn.onclick = () => nav.classList.toggle("open");
+    // Close menu when a link is clicked
+    nav.onclick = () => nav.classList.remove("open");
 </script>
 
 </body>
