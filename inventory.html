@@ -6,12 +6,12 @@
 <title>Inventory — Brain Candy Art</title>
 
 <style>
-/* ✅ TECH FIX: missing variables */
+/* --- VARIABLES --- */
 :root {
     --color-peach: #ffb399; 
     --color-text: #222;
-    --color-bg-light: #f7ede4; /* Light Cream Color */
-    --font-serif: "Times New Roman", serif;
+    --color-bg-light: #f7ede4;
+    --font-serif: "Times New Roman", Times, serif;
     --transition-speed: 0.4s;
     --gap-size: 50px; 
 }
@@ -19,27 +19,18 @@
 /* ---------- GLOBAL ---------- */
 body {
     margin: 0;
-    font-family: "Times New Roman", serif;
+    font-family: var(--font-serif);
     color: var(--color-text);
     line-height: 1.6;
-    overflow-x: hidden;
-    background: var(--color-bg-light)
-        url('https://www.transparenttextures.com/patterns/diagonal-stripes.png');
+    background: var(--color-bg-light) url('https://www.transparenttextures.com/patterns/diagonal-stripes.png');
     background-size: 500px;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-color: var(--color-bg-light);
-    pointer-events: none;
-    z-index: -1;
+h1, h2, h3, a {
+    font-family: var(--font-serif);
 }
 
-/* --- NEW NAVIGATION CSS FOR MOBILE --- */
-
-/* Base Styles */
+/* --- OG NAVIGATION (Synced with Home Page) --- */
 header {
     position: sticky;
     top: 0;
@@ -49,24 +40,18 @@ header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
-/* Menu Toggle (Hamburger Icon) */
 .menu-toggle {
-    display: block;
     font-size: 30px;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--color-text);
-    padding: 5px 10px;
-    z-index: 101;
 }
 
-
-/* Navigation Links Container */
 .main-nav {
     display: flex;
     justify-content: center;
@@ -74,60 +59,26 @@ header {
     flex-grow: 1;
 }
 
-/* Individual Links */
 .main-nav a {
     padding: 15px 0;
     margin: 0 22px;
     text-decoration: none;
     color: var(--color-text);
     font-size: 19px;
+    transition: color 0.3s;
 }
 
 .main-nav a:hover {
     color: var(--color-peach);
 }
 
-/* Navigation */
-.main-nav {
-    display: flex;
-    justify-content: center;
-    width: auto;
-    margin: 0 auto;
-}
-
-.main-nav a {
-    margin: 0 22px;
-    text-decoration: none;
-    color: #333;
-    font-size: 19px;
-    padding: 15px 0;
-    transition: color var(--transition-speed);
-}
-
-.main-nav a:hover {
-    color: var(--color-peach);
-}
-
-/* ---------------------------------
-   MOBILE NAVIGATION
---------------------------------- */
+/* Mobile Nav Slide-out */
 @media (max-width: 768px) {
-
-    header {
-        justify-content: flex-start;
-    }
-
-    .menu-toggle {
-        display: block;
-        order: -1;
-    }
-
+    .menu-toggle { display: block; order: -1; }
     .main-nav {
         position: fixed;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 250px;
+        top: 0; right: 0;
+        height: 100%; width: 250px;
         background: #fff;
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         transform: translateX(100%);
@@ -135,274 +86,139 @@ header {
         flex-direction: column;
         padding-top: 60px;
         justify-content: flex-start;
-        overflow-y: auto;
+        z-index: 999;
     }
-
-    .main-nav.open {
-        transform: translateX(0);
-    }
-
-    .main-nav a {
-        margin: 0;
-        padding: 15px 20px;
-        border-bottom: 1px solid #eee;
-        font-size: 18px;
-    }
+    .main-nav.open { transform: translateX(0); }
+    .main-nav a { margin: 0; padding: 15px 20px; border-bottom: 1px solid #eee; }
 }
 
-/* --- DESKTOP VIEW (Min-width 768px) --- */
-@media (min-width: 768px) {
-    .menu-toggle {
-        display: none; 
-    }
-
-    header {
-        justify-content: center;
-        padding: 18px 0;
-    }
-
-    .main-nav {
-        position: static;
-        height: auto;
-        width: auto;
-        box-shadow: none;
-        transform: translateX(0);
-        flex-direction: row;
-        padding-top: 0;
-    }
-
-    .main-nav a {
-        padding: 0;
-        margin: 0 25px;
-        border-bottom: none;
-        font-size: 20px;
-    }
+@media (min-width: 769px) {
+    .menu-toggle { display: none; }
 }
 
-/* -------------------------------------------
-   --- HORIZONTAL SCROLLING LAYOUT (Unchanged) ---
-   ------------------------------------------- */
+/* --- INVENTORY HEADER --- */
+.header { text-align: center; padding: 80px 25px 40px; } 
+.header h1 { font-size: 48px; font-weight: 400; margin-bottom: 10px; }
+.header p { font-size: 18px; color: #666; font-style: italic; }
 
-/* 1. CONTAINER FOR HORIZONTAL SCROLL */
+/* --- HORIZONTAL GALLERY --- */
 .gallery-wrapper {
     width: 100%;
-    margin: 40px 0 80px 0; 
-    overflow-x: scroll; 
-    overflow-y: hidden;
-    padding-bottom: 20px; 
-    
-    /* Hide scrollbar visually but keep function */
-    -ms-overflow-style: none;  
+    overflow-x: auto; 
+    padding-bottom: 40px; 
     scrollbar-width: none;  
 }
-.gallery-wrapper::-webkit-scrollbar {
-    display: none;
-}
+.gallery-wrapper::-webkit-scrollbar { display: none; }
 
-
-/* 2. THE FLEXBOX GALLERY (Sets the items side-by-side) */
 .grid {
     display: flex; 
-    gap: var(--gap-size); 
-    
+    gap: 40px; 
     width: fit-content; 
-    padding: 0 80px; 
+    padding: 0 40px; 
 }
 
-/* 3. ITEM STYLING (Smaller Fixed width + Block appearance) */
 .item {
     flex-shrink: 0; 
-    width: 280px; 
-    height: auto;
-    
+    width: 260px; 
     background: white; 
-    padding: 20px; 
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05); 
-    
-    transition: all var(--transition-speed) ease-in-out;
-    text-align: left; 
-    
-    opacity: 1; 
-    transform: none;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
+    padding: 12px; 
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    text-align: center;
 }
 
-
-/* 4. HOVER EFFECT */
-.item:hover {
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12); 
-    z-index: 1;
-}
-
-/* 5. IMAGE CONTAINER FOR CENTERING */
 .image-container {
     width: 100%;
-    height: 280px; 
-    
+    height: 260px; 
     display: flex;
     justify-content: center; 
     align-items: center; 
-    
-    background-color: #f8f8f8; 
-    border: 1px solid #eee;
+    background-color: #fcfcfc; 
+    margin-bottom: 15px;
 }
 
 .item img {
     max-width: 100%;
     max-height: 100%;
-    height: auto; 
-    width: auto;
-    
-    object-fit: contain; 
-    
-    display: block;
-    box-shadow: none;
-    transition: transform var(--transition-speed);
+    object-fit: contain;
 }
 
-.item:hover img {
-    transform: scale(1.005); 
+.item-details p { margin: 5px 0; font-size: 1.1em; }
+.item-details .category { font-size: 0.85em; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+
+/* --- TRANSITION DIVIDER --- */
+.section-divider {
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-peach);
+    margin: 60px auto;
 }
 
-/* DETAILS BELOW IMAGE */
-.item-details { 
-    padding: 20px 0 0 0; 
-    height: 70px; 
-    overflow: hidden;
-    text-align: center; 
-}
-.item-details p { 
-    margin: 0 0 5px 0; 
-    font-size: 1.1em; 
-    font-weight: normal; 
-    color: var(--color-text); 
-    line-height: 1.2;
+/* --- ELEGANT SIZE GUIDE --- */
+.size-guide-section {
+    max-width: 600px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
 }
 
-/* HEADER */
-.header { text-align: center; padding: 100px 25px 60px; } 
-.header h1 { font-size: 52px; font-weight: 400; letter-spacing: 2px; margin-bottom: 15px; color: var(--color-text); }
-.header p { font-size: 20px; color: #555; }
-
-
-/* Stylized Title */
-.sizes h2 { 
-    color: var(--color-text);
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 25px; 
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--color-peach); /* Use peach line for emphasis */
-}
-
-/* HIDE THE PRICE LINE */
-.item-details .price { display: none; } 
-
-.item-details .category { 
-    font-size: 0.9em; 
-    color: #888; 
-    text-transform: uppercase; 
-    font-weight: bold; 
-}
-
-/*PRINTS SIZE SECTION*/
-.mobile-size-guide {
-    padding: 40px 15px;
-    background-color: #fff; /* White background makes the text pop on mobile */
-    border-radius: 20px 20px 0 0; /* Slight curve at the top for a modern look */
-    margin-top: -20px; /* Overlaps slightly with the section above */
-}
-
-.size-title {
-    font-family: var(--font-heading);
+.size-guide-title {
     text-align: center;
     font-size: 28px;
-    margin-bottom: 25px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--color-peach);
+    padding-bottom: 10px;
 }
 
 .size-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 
 .size-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: var(--color-bg-light);
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 12px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Make the popular one stand out even on a small screen */
 .size-item.popular {
-    border: 2px solid var(--color-peach);
-    position: relative;
-    background: #fff;
+    border-left: 3px solid var(--color-peach);
+    padding-left: 20px;
+    background: rgba(255, 179, 153, 0.05);
 }
 
-.popular-tag {
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    background: var(--color-peach);
-    color: white;
-    font-size: 10px;
-    font-weight: 700;
+.popular-label {
+    display: block;
+    font-size: 11px;
     text-transform: uppercase;
-    padding: 2px 10px;
-    border-radius: 10px;
+    color: var(--color-peach);
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 4px;
 }
 
-.size-info h3 {
-    font-family: var(--font-heading);
-    margin: 0;
-    font-size: 18px;
-}
-
-.dimensions {
-    font-size: 14px;
-    color: #888;
-}
-
-.size-price {
-    font-family: var(--font-heading);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--color-text);
-}
+.size-info h3 { margin: 0; font-size: 19px; font-weight: 400; }
+.dimensions { font-size: 14px; color: #888; font-style: italic; }
+.size-price { font-size: 20px; color: var(--color-text); }
 
 .size-note {
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     color: #999;
-    margin-top: 20px;
+    margin-top: 30px;
     font-style: italic;
 }
 
-/* FOOTER */
-footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
-
+footer { text-align: center; padding: 60px; color: #999; border-top: 1px solid rgba(0,0,0,0.05); }
 </style>
 </head>
 
 <body>
 
 <header>
-    <!-- ✅ TECH FIX: button type + aria -->
-    <button class="menu-toggle"
-            type="button"
-            aria-label="Open Menu"
-            aria-expanded="false">
-        &#9776;
-    </button>
-
+    <button class="menu-toggle" type="button" aria-label="Open Menu">☰</button>
     <nav class="main-nav" id="main-nav">
         <a href="index.html">Home</a>
         <a href="inventory.html">Inventory</a>
@@ -852,6 +668,8 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
     </div>
 </div>
 
+<div class="section-divider"></div>
+
 <section class="mobile-size-guide">
     <h2 class="size-title">Available Print Sizes & Pricing</h2>
     
@@ -873,7 +691,7 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
         </div>
 
         <div class="size-item popular">
-            <div class="popular-tag">Most Popular</div>
+            <div class="popular-tag">Most Popular Choice</div>
             <div class="size-info">
                 <h3>Large Prints</h3>
                 <span class="dimensions">16 x 20 in</span>
@@ -884,36 +702,23 @@ footer { text-align: center; padding: 60px; color: #666; margin-top: 50px; }
         <div class="size-item">
             <div class="size-info">
                 <h3>Giclee on Streched Canvas</h3>
-                <span class="dimensions">Size upon request</span>
+                <span class="dimensions">Sizing upon request</span>
             </div>
-            <div class="size-price">From $500-$900</div>
+            <div class="size-price">$500+</div>
         </div>
     </div>
 
     
-    <p class="size-note">*All prints are high-quality archival paper with a matte finish.</p>
+    <p class="size-note">*All prints are high-quality archival paper and signed.</p>
 </section>
 
 
 <footer>© 2026 Brain Candy Art</footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.querySelector('.menu-toggle');
-    const navMenu = document.getElementById('main-nav');
-
-    toggleButton.addEventListener('click', () => {
-        const isOpen = navMenu.classList.toggle('open');
-        toggleButton.setAttribute('aria-expanded', isOpen);
-    });
-
-    navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('open');
-            toggleButton.setAttribute('aria-expanded', 'false');
-        });
-    });
-});
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.getElementById("main-nav");
+    toggle.onclick = () => nav.classList.toggle("open");
 </script>
 
 </body>

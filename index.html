@@ -177,6 +177,13 @@ header {
     text-decoration: none;
 }
 
+@media (max-width: 768px) {
+    .find-us {
+        margin-top: 100px; /* Extra breathing room before the footer info */
+        padding: 60px 20px;
+    }
+}
+
 /* --- MOBILE SPECIFIC OVERRIDES --- */
 @media (max-width: 768px) {
     .main-nav {
@@ -204,6 +211,27 @@ header {
         display: grid; 
         grid-template-columns: repeat(3, 1fr); 
         gap: 30px; 
+    }
+}
+
+/* --- THE SEPARATION FIX --- */
+.section-divider {
+    width: 60px;               /* Small, elegant width */
+    height: 1px;
+    background-color: var(--color-peach);
+    margin: 60px auto;        /* Large vertical space (60px top and bottom) */
+    position: relative;
+}
+
+/* On mobile, we make the space even more intentional */
+@media (max-width: 768px) {
+    .section-divider {
+        margin: 80px auto 40px auto; /* More space at the top to separate from hero text */
+    }
+    
+    .section-title {
+        margin-top: 0; /* Remove top margin from title since divider handles it */
+        text-align: center;
     }
 }
 
@@ -238,6 +266,8 @@ footer { text-align: center; padding: 40px; font-size: 14px; color: #aaa; }
             <p>A journey into the unexpected, combining classic imagery with modern energy.</p>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <h2 class="section-title">Recent Pieces</h2>
 
